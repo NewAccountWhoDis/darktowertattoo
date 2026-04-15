@@ -699,6 +699,23 @@ main {
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.28);
 }
 
+.expandable-gallery-modal__swipe-hint {
+  position: absolute;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 8px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(10, 10, 10, 0.56);
+  color: #d8c9b4;
+  font-family: var(--home-ui, Arial, sans-serif);
+  font-size: 0.56rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
 @media (max-width: 900px) {
   .hero-grid,
   .profile-grid,
@@ -710,27 +727,24 @@ main {
 
   .artist-fan-shell,
   .artist-fan-stage {
-    min-height: auto;
+    min-height: 600px;
   }
 
   .artist-fan-ring {
-    display: none;
+    width: min(92vw, 620px);
+    transform: translate(-50%, -54%);
   }
 
   .artist-fan-stage {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-    padding-bottom: 160px;
+    display: flex;
+    padding-bottom: 150px;
   }
 
   .artist-fan-card-wrap {
-    position: relative;
-    top: auto;
-    left: auto;
-    width: 100%;
+    width: 210px;
     height: 300px;
-    margin: 0;
+    margin-left: -105px;
+    margin-top: -160px;
   }
 
   .artist-fan-selector {
@@ -789,6 +803,22 @@ main {
     padding: 16px;
   }
 
+  .artist-fan-shell,
+  .artist-fan-stage {
+    min-height: 500px;
+  }
+
+  .artist-fan-ring {
+    width: min(94vw, 420px);
+  }
+
+  .artist-fan-card-wrap {
+    width: 152px;
+    height: 220px;
+    margin-left: -76px;
+    margin-top: -120px;
+  }
+
   .expandable-gallery-modal__nav {
     width: 48px;
     height: 48px;
@@ -809,12 +839,9 @@ main {
     height: 46px;
   }
 
-  .artist-fan-stage {
-    grid-template-columns: 1fr;
-  }
-
-  .artist-fan-card-wrap {
-    height: 260px;
+  .expandable-gallery-modal__swipe-hint {
+    top: 12px;
+    font-size: 0.5rem;
   }
 }
 

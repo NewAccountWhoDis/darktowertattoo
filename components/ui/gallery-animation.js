@@ -62,6 +62,20 @@ export default function ExpandableGallery({
     setSelectedIndex((current) => (current - 1 + images.length) % images.length);
   };
 
+  const onDragEnd = (_event, info) => {
+    const offsetX = info.offset.x;
+    const velocityX = info.velocity.x;
+
+    if (offsetX <= -70 || velocityX <= -500) {
+      setSelectedIndex((current) => (current + 1) % images.length);
+      return;
+    }
+
+    if (offsetX >= 70 || velocityX >= 500) {
+      setSelectedIndex((current) => (current - 1 + images.length) % images.length);
+    }
+  };
+
   return (
     <div className={className}>
       <div
@@ -152,6 +166,10 @@ export default function ExpandableGallery({
               animate={{ opacity: 1, y: 0, scale: 1, rotateX: 0 }}
               exit={{ opacity: 0, y: 24, scale: 0.94, rotateX: 4 }}
               transition={{ duration: 0.42, ease: [0.22, 1, 0.36, 1] }}
+              drag={images.length > 1 ? "x" : false}
+              dragConstraints={{ left: 0, right: 0 }}
+              dragElastic={0.14}
+              onDragEnd={images.length > 1 ? onDragEnd : undefined}
             >
               <motion.div
                 className="expandable-gallery-modal__image-frame"
@@ -171,6 +189,11 @@ export default function ExpandableGallery({
                 transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
               />
               </motion.div>
+              {images.length > 1 ? (
+                <div className="expandable-gallery-modal__swipe-hint">
+                  Swipe to browse
+                </div>
+              ) : null}
             </motion.div>
 
             {images.length > 1 ? (

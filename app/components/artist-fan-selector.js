@@ -9,6 +9,7 @@ export default function ArtistFanSelector({ artists }) {
   const router = useRouter();
   const [isReady, setIsReady] = useState(false);
   const [selectedSlug, setSelectedSlug] = useState("");
+  const [viewportWidth, setViewportWidth] = useState(1400);
 
   useEffect(() => {
     const timeoutId = window.setTimeout(() => {
@@ -18,15 +19,43 @@ export default function ArtistFanSelector({ artists }) {
     return () => window.clearTimeout(timeoutId);
   }, []);
 
-  const fanLayout = useMemo(
-    () => [
+  useEffect(() => {
+    const updateViewportWidth = () => {
+      setViewportWidth(window.innerWidth);
+    };
+
+    updateViewportWidth();
+    window.addEventListener("resize", updateViewportWidth);
+
+    return () => window.removeEventListener("resize", updateViewportWidth);
+  }, []);
+
+  const fanLayout = useMemo(() => {
+    if (viewportWidth <= 640) {
+      return [
+        { rotate: -17, x: -106, y: 18, zIndex: 1 },
+        { rotate: -6, x: -34, y: -6, zIndex: 3 },
+        { rotate: 6, x: 34, y: -6, zIndex: 4 },
+        { rotate: 17, x: 106, y: 18, zIndex: 2 }
+      ];
+    }
+
+    if (viewportWidth <= 900) {
+      return [
+        { rotate: -18, x: -172, y: 16, zIndex: 1 },
+        { rotate: -7, x: -58, y: -12, zIndex: 3 },
+        { rotate: 7, x: 58, y: -12, zIndex: 4 },
+        { rotate: 18, x: 172, y: 16, zIndex: 2 }
+      ];
+    }
+
+    return [
       { rotate: -20, x: -270, y: 10, zIndex: 1 },
       { rotate: -7, x: -95, y: -20, zIndex: 3 },
       { rotate: 7, x: 95, y: -20, zIndex: 4 },
       { rotate: 20, x: 270, y: 10, zIndex: 2 }
-    ],
-    []
-  );
+    ];
+  }, [viewportWidth]);
 
   const onSelectArtist = (event) => {
     const nextSlug = event.target.value;
