@@ -1,32 +1,12 @@
 import Link from "next/link";
+import HomeHeader from "@/app/components/home-header";
 import HeroScrollLogo from "@/app/components/hero-scroll-logo";
 import { artists, shopInfo } from "@/lib/site-data";
 
 export default function HomePage() {
   return (
     <main className="home-page">
-      <nav className="home-nav" aria-label="Main navigation">
-        <div className="home-nav-inner">
-          <a href="#hero" className="home-nav-logo" aria-label="Dark Tower Tattoo Home">
-            <img src="/DTT Logo v2.png" alt="Dark Tower Tattoo logo" />
-            <div className="home-nav-logo-text">
-              Dark Tower
-              <span>Tattoo Studio</span>
-            </div>
-          </a>
-
-          <div className="home-nav-links">
-            <a href="#about">About</a>
-            <Link href="/artists">Artists</Link>
-            <a href="#services">Services</a>
-            <a href="#contact">Contact</a>
-          </div>
-
-          <a href={`tel:${shopInfo.phoneLink}`} className="home-pill home-pill-primary">
-            {shopInfo.phoneDisplay}
-          </a>
-        </div>
-      </nav>
+      <HomeHeader phoneDisplay={shopInfo.phoneDisplay} phoneLink={shopInfo.phoneLink} />
 
       <section id="hero" className="home-hero" aria-label="Welcome to Dark Tower Tattoo">
         <div className="home-hero-bg" />
@@ -368,6 +348,12 @@ export default function HomePage() {
           <div className="home-footer-bottom">
             <p>© 2026 Dark Tower Tattoo · Troy, NY · All Rights Reserved</p>
             <p>564 Hoosick St · Troy, NY 12180 · {shopInfo.phoneDisplay}</p>
+            <p className="home-footer-credit">
+              Designed By{" "}
+              <a href="https://www.meeetmister.black" target="_blank" rel="noreferrer">
+                JxB
+              </a>
+            </p>
           </div>
         </div>
       </footer>

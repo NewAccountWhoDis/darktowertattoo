@@ -10,6 +10,7 @@ export default function ArtistFanSelector({ artists }) {
   const [isReady, setIsReady] = useState(false);
   const [selectedSlug, setSelectedSlug] = useState("");
   const [viewportWidth, setViewportWidth] = useState(1400);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const timeoutId = window.setTimeout(() => {
@@ -64,6 +65,12 @@ export default function ArtistFanSelector({ artists }) {
     if (nextSlug) {
       router.push(`/artists/${nextSlug}`);
     }
+  };
+
+  const selectArtistFromMenu = (slug) => {
+    setSelectedSlug(slug);
+    setIsMobileMenuOpen(false);
+    router.push(`/artists/${slug}`);
   };
 
   return (
@@ -131,6 +138,29 @@ export default function ArtistFanSelector({ artists }) {
               </option>
             ))}
           </select>
+
+          <button
+            type="button"
+            className="artist-fan-selector__trigger"
+            aria-expanded={isMobileMenuOpen}
+            onClick={() => setIsMobileMenuOpen((current) => !current)}
+          >
+            {selectedSlug ? artists.find((artist) => artist.slug === selectedSlug)?.name : "Select an artist"}
+          </button>
+
+          <div className={`artist-fan-selector__menu ${isMobileMenuOpen ? "is-open" : ""}`}>
+            {artists.map((artist) => (
+              <button
+                key={artist.slug}
+                type="button"
+                className="artist-fan-selector__option"
+                onClick={() => selectArtistFromMenu(artist.slug)}
+              >
+                <span>{artist.name}</span>
+                <small>{artist.role}</small>
+              </button>
+            ))}
+          </div>
         </div>
       </div>
     </div>
