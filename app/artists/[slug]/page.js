@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import ExpandableGallery from "@/components/ui/gallery-animation";
 import { artists, getArtist, shopInfo } from "@/lib/site-data";
 
 export function generateStaticParams() {
@@ -98,13 +99,10 @@ export default function ArtistPage({ params }) {
         <div className="container">
           <p className="eyebrow">Portfolio</p>
           <h2>Gallery</h2>
-          <div className="gallery-grid">
-            {artist.gallery.map((image, index) => (
-              <a key={image} href={image} target="_blank" rel="noreferrer" className="gallery-card">
-                <img src={image} alt={`${artist.name} portfolio item ${index + 1}`} />
-              </a>
-            ))}
-          </div>
+          <p className="section-copy">
+            Hover to expand a piece, then click to open the full-screen gallery.
+          </p>
+          <ExpandableGallery images={artist.gallery} artistName={artist.name} className="artist-gallery-shell" />
         </div>
       </section>
 
@@ -114,13 +112,12 @@ export default function ArtistPage({ params }) {
             <p className="eyebrow">More Work</p>
             <h2>{artist.extraGalleryTitle}</h2>
             <p className="section-copy">{artist.extraGalleryIntro}</p>
-            <div className="gallery-grid">
-              {artist.extraGallery.map((image, index) => (
-                <a key={image} href={image} target="_blank" rel="noreferrer" className="gallery-card">
-                  <img src={image} alt={`${artist.name} jewelry item ${index + 1}`} />
-                </a>
-              ))}
-            </div>
+            <ExpandableGallery
+              images={artist.extraGallery}
+              artistName={artist.name}
+              className="artist-gallery-shell artist-gallery-shell--secondary"
+              mobileColumns
+            />
           </div>
         </section>
       ) : null}

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import HeroScrollLogo from "@/app/components/hero-scroll-logo";
 import { artists, shopInfo } from "@/lib/site-data";
 
 export default function HomePage() {
@@ -32,7 +33,7 @@ export default function HomePage() {
         <img src="/skull.png" alt="" className="home-hero-skull" aria-hidden="true" />
 
         <div className="home-hero-content">
-          <img src="/Dark Tower Logo wht.png" alt="Dark Tower Tattoo" className="home-hero-logo" />
+          <HeroScrollLogo />
           <span className="home-hero-eyebrow">Troy, New York · Est. in the 518</span>
           <p className="home-hero-sub">
             Custom tattoos. Professional piercing. Walk-ins welcome.
