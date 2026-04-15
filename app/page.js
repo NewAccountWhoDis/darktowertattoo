@@ -16,19 +16,20 @@ export default function HomePage() {
           <HeroScrollLogo />
           <span className="home-hero-eyebrow">Troy, New York · Est. in the 518</span>
           <p className="home-hero-sub">
-            Custom tattoos. Professional piercing. Walk-ins welcome.
+            Walk in for bold flash, book in for fully custom work, and head out with
+            something that feels like it belongs to you.
           </p>
           <p className="home-hero-kicker">
             {shopInfo.address} · Open daily 11am to 8pm · Walk-ins welcome
           </p>
 
           <div className="home-hero-actions">
-            <Link href="/artists" className="home-pill home-pill-primary">
+            <a href={`tel:${shopInfo.phoneLink}`} className="home-pill home-pill-primary">
+              Call the Shop
+            </a>
+            <Link href="/artists" className="home-pill">
               Meet the Artists
             </Link>
-            <a href="#contact" className="home-pill">
-              Hours &amp; Location
-            </a>
           </div>
 
           <div className="home-quickbar" aria-label="Quick actions">
@@ -130,9 +131,13 @@ export default function HomePage() {
             <span className="home-section-label">The Crew</span>
             <div className="home-gold-rule" />
             <h2 className="home-section-title">Meet the Artists</h2>
+            <p className="home-section-intro">
+              Four different lanes of work, one shop standard. Start with the artist whose
+              style feels closest to the piece you want.
+            </p>
           </div>
 
-          <div className="home-artists-grid">
+          <div className="home-artists-grid home-artists-grid--editorial">
             {artists.map((artist) => (
               <Link
                 key={artist.slug}
@@ -147,6 +152,7 @@ export default function HomePage() {
                 <div className="home-artist-info">
                   <h3 className="home-artist-name">{artist.name}</h3>
                   <p className="home-artist-role">{artist.role}</p>
+                  <p className="home-artist-blurb">{artist.shortBio}</p>
                   <p className="home-artist-link-label">View gallery &amp; links</p>
                 </div>
               </Link>
@@ -164,7 +170,8 @@ export default function HomePage() {
           </div>
 
           <div className="home-services-grid">
-            <div className="home-service-card">
+            <div className="home-service-card home-service-card--tattoo">
+              <div className="home-service-kicker">Built for custom work</div>
               <div className="home-service-number">01</div>
               <h3 className="home-service-title">Custom Tattoos</h3>
               <p className="home-service-desc">
@@ -172,12 +179,18 @@ export default function HomePage() {
                 for you: traditional, neo-traditional, realism, horror, blackwork,
                 portraits, color, and cover-ups.
               </p>
+              <div className="home-service-notes">
+                <span>Sleeves</span>
+                <span>Cover-Ups</span>
+                <span>Large Scale</span>
+              </div>
               <Link href="/artists" className="home-service-link">
                 View Artists
               </Link>
             </div>
 
-            <div className="home-service-card">
+            <div className="home-service-card home-service-card--piercing">
+              <div className="home-service-kicker">Precise placement</div>
               <div className="home-service-number">02</div>
               <h3 className="home-service-title">Body Piercing</h3>
               <p className="home-service-desc">
@@ -185,6 +198,11 @@ export default function HomePage() {
                 hygienic, and precise. From nostrils to ears to curated setups,
                 book online or walk in and ask for Gina.
               </p>
+              <div className="home-service-notes">
+                <span>Ears</span>
+                <span>Nostrils</span>
+                <span>Jewelry</span>
+              </div>
               <a
                 href={shopInfo.piercingBooking}
                 target="_blank"
@@ -195,13 +213,19 @@ export default function HomePage() {
               </a>
             </div>
 
-            <div className="home-service-card">
+            <div className="home-service-card home-service-card--merch">
+              <div className="home-service-kicker">Take the shop with you</div>
               <div className="home-service-number">03</div>
               <h3 className="home-service-title">DTT Merch</h3>
               <p className="home-service-desc">
                 Hoodies, hats, jewelry, stickers, and more Dark Tower gear.
                 Stop in the shop to see what&apos;s in stock. New designs drop regularly.
               </p>
+              <div className="home-service-notes">
+                <span>Hoodies</span>
+                <span>Stickers</span>
+                <span>Jewelry</span>
+              </div>
               <a href="#contact" className="home-service-link">
                 Find the Shop
               </a>
@@ -266,13 +290,16 @@ export default function HomePage() {
               </div>
             </div>
 
-            <div className="home-contact-social">
-              <a href={shopInfo.instagram} target="_blank" rel="noreferrer" className="home-pill">
-                Instagram
-              </a>
-              <a href={shopInfo.facebook} target="_blank" rel="noreferrer" className="home-pill">
-                Facebook
-              </a>
+            <div className="home-contact-social-wrap">
+              <span className="home-contact-item-label">Follow Us</span>
+              <div className="home-contact-social">
+                <a href={shopInfo.instagram} target="_blank" rel="noreferrer" className="home-pill">
+                  Instagram
+                </a>
+                <a href={shopInfo.facebook} target="_blank" rel="noreferrer" className="home-pill">
+                  Facebook
+                </a>
+              </div>
             </div>
           </div>
 

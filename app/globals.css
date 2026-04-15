@@ -1216,10 +1216,11 @@ main {
 
 .home-hero-sub {
   font-family: var(--home-body);
-  font-size: clamp(1rem, 1.8vw, 1.2rem);
+  font-size: clamp(1.16rem, 2.1vw, 1.42rem);
   color: var(--home-text-muted);
   margin-top: 1.2rem;
   font-style: italic;
+  max-width: 38rem;
 }
 
 .home-hero-kicker {
@@ -1231,12 +1232,32 @@ main {
   color: var(--home-text-faint);
 }
 
+.home-hero-title {
+  margin: 0;
+  max-width: 12ch;
+  font-family: var(--home-hero);
+  font-size: clamp(3rem, 7vw, 5.8rem);
+  line-height: 0.96;
+  letter-spacing: 0.04em;
+  color: var(--home-text);
+  text-shadow: 0 0 60px rgba(196, 148, 58, 0.12);
+}
+
 .home-hero-actions,
 .home-about-actions,
 .home-contact-social {
   display: flex;
   gap: 16px;
   flex-wrap: wrap;
+}
+
+.home-contact-social-wrap {
+  margin-top: 2.5rem;
+}
+
+.home-contact-social-wrap .home-contact-item-label {
+  display: block;
+  margin-bottom: 12px;
 }
 
 .home-hero-actions {
@@ -1361,6 +1382,13 @@ main {
   margin: 0 0 0.5rem;
 }
 
+.home-section-intro {
+  max-width: 42rem;
+  margin: 0 auto;
+  color: var(--home-text-muted);
+  font-size: 1.04rem;
+}
+
 .home-centered-header {
   text-align: center;
   margin-bottom: 72px;
@@ -1447,10 +1475,16 @@ main {
   grid-template-columns: repeat(4, 1fr);
 }
 
+.home-artists-grid--editorial {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
 .home-artist-card {
   position: relative;
   overflow: hidden;
   background: var(--home-card);
+  min-height: 420px;
 }
 
 .home-artist-photo {
@@ -1506,6 +1540,14 @@ main {
   color: var(--home-text-muted);
 }
 
+.home-artist-blurb {
+  margin-top: 12px;
+  max-width: 28ch;
+  color: rgba(226, 219, 208, 0.84);
+  font-size: 0.96rem;
+  line-height: 1.55;
+}
+
 .home-services-grid {
   grid-template-columns: repeat(3, 1fr);
 }
@@ -1522,6 +1564,24 @@ main {
     0 20px 60px rgba(0, 0, 0, 0.24),
     inset 0 1px 0 rgba(255, 255, 255, 0.03);
   transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.home-service-card--tattoo {
+  background:
+    radial-gradient(circle at top left, rgba(196, 148, 58, 0.08), transparent 34%),
+    linear-gradient(180deg, rgba(22, 22, 22, 0.98), rgba(8, 8, 8, 0.98));
+}
+
+.home-service-card--piercing {
+  background:
+    radial-gradient(circle at top right, rgba(255, 255, 255, 0.06), transparent 32%),
+    linear-gradient(180deg, rgba(19, 19, 19, 0.98), rgba(8, 8, 8, 0.98));
+}
+
+.home-service-card--merch {
+  background:
+    radial-gradient(circle at bottom left, rgba(122, 18, 18, 0.12), transparent 34%),
+    linear-gradient(180deg, rgba(22, 22, 22, 0.98), rgba(8, 8, 8, 0.98));
 }
 
 .home-service-card::before {
@@ -1560,6 +1620,15 @@ main {
   margin-bottom: 28px;
 }
 
+.home-service-kicker {
+  margin-bottom: 22px;
+  font-family: var(--home-ui);
+  font-size: 0.56rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--home-gold);
+}
+
 .home-service-title {
   font-family: var(--home-display);
   font-size: 1.3rem;
@@ -1571,6 +1640,24 @@ main {
 .home-service-desc {
   font-size: 1.05rem;
   line-height: 1.65;
+}
+
+.home-service-notes {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 22px;
+}
+
+.home-service-notes span {
+  padding: 8px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+  color: rgba(226, 219, 208, 0.82);
+  font-family: var(--home-ui);
+  font-size: 0.56rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
 }
 
 .home-service-link {
@@ -1819,6 +1906,10 @@ main {
     grid-template-columns: repeat(2, 1fr);
   }
 
+  .home-artists-grid--editorial {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .home-services-grid {
     grid-template-columns: 1fr 1fr;
   }
@@ -1883,6 +1974,14 @@ main {
     grid-template-columns: 1fr;
   }
 
+  .home-artists-grid--editorial {
+    grid-template-columns: 1fr;
+  }
+
+  .home-artist-card {
+    min-height: 320px;
+  }
+
   .home-aftercare-inner {
     flex-direction: column;
     gap: 16px;
@@ -1908,5 +2007,9 @@ main {
   .home-hero-kicker {
     line-height: 1.7;
     padding: 0 10px;
+  }
+
+  .home-hero-title {
+    max-width: 10ch;
   }
 }
