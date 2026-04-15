@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Gary Aldrich at Dark Tower Tattoo. View gallery work and social links.">
+<title>Gary Aldrich | Dark Tower Tattoo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Oswald:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --black:#060606; --surface:#0e0e0e; --card:#131313; --border:#1c1c1c; --gold:#c4943a;
+  --gold-light:#e0b96a; --text:#e2dbd0; --text-muted:#8a837a;
+  --font-heading:'Cinzel', serif; --font-body:'Crimson Text', serif; --font-ui:'Oswald', sans-serif;
+}
+body { background: var(--black); color: var(--text); font-family: var(--font-body); line-height: 1.6; }
+body::before { content:''; position:fixed; inset:0; pointer-events:none; opacity:.028; z-index:9999; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E"); }
+img { display:block; max-width:100%; }
+a { color:inherit; text-decoration:none; }
+.container { width:min(1240px, calc(100% - 48px)); margin:0 auto; }
+.back-link,
+.btn {
+  position:relative;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.12);
+  background:
+    radial-gradient(circle at top, rgba(255,255,255,.18), transparent 58%),
+    linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+  color:var(--text);
+  box-shadow:
+    0 14px 34px rgba(0,0,0,.28),
+    inset 0 1px 0 rgba(255,255,255,.12),
+    inset 0 -1px 0 rgba(255,255,255,.03);
+  backdrop-filter: blur(16px) saturate(155%);
+  -webkit-backdrop-filter: blur(16px) saturate(155%);
+  transition: transform .28s ease, border-color .28s ease, box-shadow .28s ease, background .28s ease, color .28s ease;
+}
+.back-link::before,
+.btn::before {
+  content:'';
+  position:absolute;
+  inset:1px;
+  border-radius:inherit;
+  background:
+    radial-gradient(circle at bottom, rgba(122,18,18,.2), transparent 52%),
+    linear-gradient(180deg, rgba(255,255,255,.1), rgba(255,255,255,.02));
+  opacity:.95;
+  pointer-events:none;
+}
+.back-link::after,
+.btn::after {
+  content:'';
+  position:absolute;
+  inset:0;
+  border-radius:inherit;
+  background:
+    radial-gradient(circle at 50% 110%, rgba(207,45,45,.34), transparent 48%),
+    linear-gradient(120deg, transparent 24%, rgba(255,255,255,.18) 42%, transparent 58%);
+  opacity:0;
+  transition:opacity .28s ease;
+  pointer-events:none;
+}
+.back-link:hover,
+.back-link:focus-visible,
+.btn:hover,
+.btn:focus-visible {
+  border-color: rgba(179,37,37,.72);
+  color:#fff7f2;
+  background:
+    radial-gradient(circle at top, rgba(255,255,255,.18), transparent 58%),
+    linear-gradient(180deg, rgba(179,37,37,.24), rgba(110,18,18,.16));
+  box-shadow:
+    0 18px 44px rgba(80,10,10,.34),
+    inset 0 1px 0 rgba(255,255,255,.14),
+    inset 0 -1px 0 rgba(255,255,255,.05);
+  transform:translateY(-2px) scale(1.01);
+}
+.back-link:hover::after,
+.back-link:focus-visible::after,
+.btn:hover::after,
+.btn:focus-visible::after { opacity:1; }
+.back-link:active,
+.btn:active { transform:translateY(1px) scale(.985); }
+.back-link { margin:28px 0 0; padding:12px 18px; font-family:var(--font-ui); font-size:.68rem; letter-spacing:.2em; text-transform:uppercase; }
+.hero { min-height:72vh; display:flex; align-items:end; padding:48px 0 56px; background:linear-gradient(to top, rgba(6,6,6,.9), rgba(6,6,6,.35)), url("../gary3.jpeg") center top/cover no-repeat; border-bottom:1px solid var(--border); }
+.hero h1 { font-family:var(--font-heading); font-size:clamp(2.6rem, 7vw, 5.6rem); letter-spacing:.04em; text-transform:uppercase; }
+.hero p { margin-top:12px; color:var(--text-muted); font-size:1.15rem; }
+.eyebrow { font-family:var(--font-ui); font-size:.68rem; letter-spacing:.22em; text-transform:uppercase; color:var(--gold); margin-bottom:12px; display:block; }
+.section { padding:96px 0; }
+.section.alt { background:var(--surface); }
+.grid { display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:start; }
+.bio-photo img { height:520px; width:100%; object-fit:cover; object-position:center top; filter:grayscale(.14); }
+.title { font-family:var(--font-heading); font-size:clamp(1.8rem, 4vw, 2.8rem); margin-bottom:14px; }
+.copy p { color:var(--text-muted); font-size:1.1rem; margin-top:14px; }
+.meta { display:grid; gap:14px; margin-top:28px; }
+.meta span { font-family:var(--font-ui); font-size:.64rem; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); display:block; margin-bottom:4px; }
+.links { display:flex; gap:14px; flex-wrap:wrap; margin-top:28px; }
+.btn { padding:14px 26px; font-family:var(--font-ui); font-size:.68rem; letter-spacing:.2em; text-transform:uppercase; }
+.btn.primary { color:#fff4ef; border-color:rgba(127,22,22,.62); background:radial-gradient(circle at top, rgba(255,255,255,.16), transparent 58%), linear-gradient(180deg, rgba(127,22,22,.26), rgba(122,18,18,.14)); }
+.btn.ghost { color:var(--text); }
+.gallery { display:grid; grid-template-columns:repeat(4, 1fr); gap:3px; margin-top:30px; }
+.gallery a { background:var(--card); overflow:hidden; }
+.gallery img { width:100%; height:100%; aspect-ratio:1; object-fit:cover; transition:transform .45s ease, filter .45s ease; filter:grayscale(.12) contrast(1.04); }
+.gallery a:hover img { transform:scale(1.05); filter:grayscale(0) contrast(1.08); }
+.gallery-note { color:var(--text-muted); margin-top:14px; font-style:italic; }
+footer { padding:34px 0 48px; border-top:1px solid var(--border); }
+footer p { color:var(--text-muted); font-family:var(--font-ui); font-size:.6rem; letter-spacing:.16em; text-transform:uppercase; }
+@media (max-width: 900px) { .grid, .gallery { grid-template-columns:1fr 1fr; } .bio-photo img { height:420px; } }
+@media (max-width: 640px) { .grid, .gallery { grid-template-columns:1fr; } .section { padding:72px 0; } .hero { min-height:60vh; } }
+</style>
+</head>
+<body>
+  <div class="container"><a class="back-link" href="../index.html#artists">Back to Artists</a></div>
+  <section class="hero">
+    <div class="container">
+      <span class="eyebrow">Dark Tower Tattoo</span>
+      <h1>Gary Aldrich</h1>
+      <p>Owner · Tattoo Artist</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container grid">
+      <div class="bio-photo"><img src="../GARY.jpeg" alt="Gary Aldrich"></div>
+      <div class="copy">
+        <h2 class="title">Large-Scale Custom Work</h2>
+        <p>Gary Aldrich leads Dark Tower Tattoo with a focus on custom work that hits hard and lasts. His portfolio leans into horror, realism, neo-traditional, character work, and large-scale pieces.</p>
+        <p>If you are planning a sleeve, back piece, cover-up, or a custom concept that needs strong design direction, Gary is one of the core artists driving that standard at the shop.</p>
+        <div class="meta">
+          <div><span>Specialties</span>Horror, realism, neo-traditional, large-scale custom tattooing</div>
+          <div><span>Shop</span>Dark Tower Tattoo · 564 Hoosick St · Troy, NY</div>
+        </div>
+        <div class="links">
+          <a class="btn primary" href="https://www.instagram.com/dark_tower_tattoo/" target="_blank" rel="noopener">Instagram</a>
+          <a class="btn ghost" href="tel:+15182037730">Call the Shop</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section alt">
+    <div class="container">
+      <h2 class="title">Gallery</h2>
+      <div class="gallery">
+        <a href="../Gary Tats/owl sleeve.jpeg" target="_blank" rel="noopener"><img src="../Gary Tats/owl sleeve.jpeg" alt="Owl sleeve tattoo by Gary Aldrich"></a>
+        <a href="../Gary Tats/back piece.jpeg" target="_blank" rel="noopener"><img src="../Gary Tats/back piece.jpeg" alt="Back piece by Gary Aldrich"></a>
+        <a href="../Gary Tats/dr plague.jpeg" target="_blank" rel="noopener"><img src="../Gary Tats/dr plague.jpeg" alt="Dr plague tattoo by Gary Aldrich"></a>
+        <a href="../Gary Tats/pinhead.jpeg" target="_blank" rel="noopener"><img src="../Gary Tats/pinhead.jpeg" alt="Pinhead tattoo by Gary Aldrich"></a>
+        <a href="../Gary Tats/werewolf.jpg" target="_blank" rel="noopener"><img src="../Gary Tats/werewolf.jpg" alt="Werewolf tattoo by Gary Aldrich"></a>
+        <a href="../Gary Tats/joker award.jpeg" target="_blank" rel="noopener"><img src="../Gary Tats/joker award.jpeg" alt="Joker tattoo by Gary Aldrich"></a>
+        <a href="../Gary Tats/back piece 2.jpeg" target="_blank" rel="noopener"><img src="../Gary Tats/back piece 2.jpeg" alt="Large back tattoo by Gary Aldrich"></a>
+        <a href="../Gary Tats/alena.jpeg" target="_blank" rel="noopener"><img src="../Gary Tats/alena.jpeg" alt="Custom tattoo by Gary Aldrich"></a>
+      </div>
+      <p class="gallery-note">Click any image to view it full size.</p>
+    </div>
+  </section>
+  <footer>
+    <div class="container"><p>Dark Tower Tattoo · Troy, NY · (518) 203-7730</p></div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Meet the artists at Dark Tower Tattoo and choose an artist to view their gallery.">
+<title>Artists | Dark Tower Tattoo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Oswald:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --black:#060606;
+  --surface:#0e0e0e;
+  --card:#131313;
+  --border:#1c1c1c;
+  --gold:#c4943a;
+  --gold-light:#e0b96a;
+  --text:#e2dbd0;
+  --text-muted:#8a837a;
+  --text-faint:#42403d;
+  --font-heading:'Cinzel', serif;
+  --font-body:'Crimson Text', serif;
+  --font-ui:'Oswald', sans-serif;
+}
+html { scroll-behavior: smooth; }
+body {
+  background: radial-gradient(circle at top, #150909 0%, #060606 46%);
+  color: var(--text);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+body::before {
+  content:'';
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  opacity:.028;
+  z-index:9999;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+}
+a { color: inherit; text-decoration: none; }
+img { display:block; max-width:100%; }
+.container { width:min(1240px, calc(100% - 48px)); margin:0 auto; }
+.topbar {
+  position:sticky;
+  top:0;
+  z-index:30;
+  backdrop-filter: blur(14px);
+  background: rgba(6,6,6,.82);
+  border-bottom:1px solid rgba(196,148,58,.1);
+}
+.topbar-inner {
+  min-height:74px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+}
+.brand {
+  display:flex;
+  align-items:center;
+  gap:12px;
+  font-family:var(--font-heading);
+  text-transform:uppercase;
+  letter-spacing:.08em;
+}
+.brand img { height:40px; width:auto; filter:brightness(0) invert(1); }
+.back-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.12);
+  background:
+    radial-gradient(circle at top, rgba(255,255,255,.18), transparent 58%),
+    linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+  box-shadow:
+    0 14px 34px rgba(0,0,0,.28),
+    inset 0 1px 0 rgba(255,255,255,.12),
+    inset 0 -1px 0 rgba(255,255,255,.03);
+  backdrop-filter: blur(16px) saturate(155%);
+  -webkit-backdrop-filter: blur(16px) saturate(155%);
+  font-family:var(--font-ui);
+  font-size:.68rem;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--text);
+  padding:12px 18px;
+  transition: transform .28s ease, border-color .28s ease, box-shadow .28s ease, background .28s ease, color .28s ease;
+}
+.back-link::before,
+.btn::before {
+  content:'';
+  position:absolute;
+  inset:1px;
+  border-radius:inherit;
+  background:
+    radial-gradient(circle at bottom, rgba(122,18,18,.2), transparent 52%),
+    linear-gradient(180deg, rgba(255,255,255,.1), rgba(255,255,255,.02));
+  opacity:.95;
+  pointer-events:none;
+}
+.back-link::after,
+.btn::after {
+  content:'';
+  position:absolute;
+  inset:0;
+  border-radius:inherit;
+  background:
+    radial-gradient(circle at 50% 110%, rgba(207,45,45,.34), transparent 48%),
+    linear-gradient(120deg, transparent 24%, rgba(255,255,255,.18) 42%, transparent 58%);
+  opacity:0;
+  transition: opacity .28s ease;
+  pointer-events:none;
+}
+.back-link:hover,
+.back-link:focus-visible,
+.btn:hover,
+.btn:focus-visible {
+  border-color: rgba(179,37,37,.72);
+  color:#fff7f2;
+  background:
+    radial-gradient(circle at top, rgba(255,255,255,.18), transparent 58%),
+    linear-gradient(180deg, rgba(179,37,37,.24), rgba(110,18,18,.16));
+  box-shadow:
+    0 18px 44px rgba(80,10,10,.34),
+    inset 0 1px 0 rgba(255,255,255,.14),
+    inset 0 -1px 0 rgba(255,255,255,.05);
+  transform: translateY(-2px) scale(1.01);
+}
+.back-link:hover::after,
+.back-link:focus-visible::after,
+.btn:hover::after,
+.btn:focus-visible::after {
+  opacity:1;
+}
+.back-link:active,
+.btn:active {
+  transform: translateY(1px) scale(.985);
+}
+.back-link > *,
+.btn > * {
+  position:relative;
+  z-index:1;
+}
+.hero {
+  min-height:100svh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:42px 0 96px;
+  position:relative;
+  overflow:hidden;
+}
+.hero::before {
+  content:'';
+  position:absolute;
+  inset:auto 50% 0;
+  width:min(90vw, 1100px);
+  height:min(90vw, 1100px);
+  transform:translateX(-50%);
+  background: radial-gradient(circle, rgba(196,148,58,.12), transparent 64%);
+  pointer-events:none;
+}
+.hero-grid {
+  width:100%;
+  display:grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(320px, .9fr);
+  gap:42px;
+  align-items:center;
+}
+.eyebrow {
+  display:block;
+  font-family:var(--font-ui);
+  font-size:.7rem;
+  letter-spacing:.25em;
+  text-transform:uppercase;
+  color:var(--gold);
+  margin-bottom:14px;
+}
+.title {
+  font-family:var(--font-heading);
+  font-size:clamp(2.4rem, 6vw, 5rem);
+  line-height:1.02;
+  letter-spacing:.03em;
+  text-transform:uppercase;
+}
+.intro {
+  max-width:34rem;
+  margin-top:16px;
+  color:var(--text-muted);
+  font-size:1.16rem;
+}
+.picker-panel {
+  margin-top:34px;
+  max-width:420px;
+}
+.picker-label {
+  display:block;
+  font-family:var(--font-ui);
+  font-size:.64rem;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--text-faint);
+  margin-bottom:12px;
+}
+.picker {
+  width:100%;
+  height:58px;
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:999px;
+  background:
+    radial-gradient(circle at top, rgba(255,255,255,.12), transparent 58%),
+    linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+  box-shadow:
+    0 14px 34px rgba(0,0,0,.22),
+    inset 0 1px 0 rgba(255,255,255,.1),
+    inset 0 -1px 0 rgba(255,255,255,.03);
+  backdrop-filter: blur(14px) saturate(145%);
+  -webkit-backdrop-filter: blur(14px) saturate(145%);
+  color:var(--text);
+  padding:0 18px;
+  font-family:var(--font-ui);
+  font-size:.9rem;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+.picker:focus {
+  outline:none;
+  border-color:rgba(179,37,37,.72);
+  box-shadow:
+    0 18px 44px rgba(80,10,10,.24),
+    inset 0 1px 0 rgba(255,255,255,.12),
+    0 0 0 1px rgba(179,37,37,.2);
+}
+.cta-row {
+  display:flex;
+  gap:14px;
+  flex-wrap:wrap;
+  margin-top:18px;
+}
+.btn {
+  position: relative;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  padding:14px 24px;
+  font-family:var(--font-ui);
+  font-size:.68rem;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:999px;
+  background:
+    radial-gradient(circle at top, rgba(255,255,255,.18), transparent 58%),
+    linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+  color:var(--text);
+  box-shadow:
+    0 14px 34px rgba(0,0,0,.28),
+    inset 0 1px 0 rgba(255,255,255,.12),
+    inset 0 -1px 0 rgba(255,255,255,.03);
+  backdrop-filter: blur(16px) saturate(155%);
+  -webkit-backdrop-filter: blur(16px) saturate(155%);
+  transition: transform .28s ease, border-color .28s ease, box-shadow .28s ease, background .28s ease, color .28s ease;
+}
+.btn.primary {
+  color:#fff4ef;
+  border-color:rgba(127,22,22,.62);
+  background:
+    radial-gradient(circle at top, rgba(255,255,255,.16), transparent 58%),
+    linear-gradient(180deg, rgba(127,22,22,.26), rgba(122,18,18,.14));
+}
+.btn.ghost { color:var(--text); }
+.fan-wrap {
+  position:relative;
+  min-height:640px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  perspective:1400px;
+}
+.fan-ring {
+  position:absolute;
+  inset:50% auto auto 50%;
+  width:min(78vw, 760px);
+  aspect-ratio:1;
+  transform:translate(-50%, -50%);
+  border-radius:50%;
+  border:1px solid rgba(196,148,58,.08);
+  box-shadow:0 0 0 28px rgba(196,148,58,.02), 0 0 80px rgba(196,148,58,.06);
+  pointer-events:none;
+}
+.fan-stage {
+  position:relative;
+  width:min(76vw, 760px);
+  height:min(76vw, 760px);
+  animation:fanFloat 9s ease-in-out infinite;
+}
+.artist-fan-card {
+  position:absolute;
+  top:15%;
+  width:230px;
+  height:320px;
+  overflow:hidden;
+  border:1px solid rgba(196,148,58,.16);
+  background:linear-gradient(180deg, rgba(23,23,23,.98), rgba(8,8,8,.98));
+  box-shadow:0 20px 60px rgba(0,0,0,.42);
+  transform-origin:center bottom;
+  transition:transform .45s ease, box-shadow .45s ease, border-color .45s ease;
+}
+.artist-fan-card::after {
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to top, rgba(6,6,6,.95), transparent 48%);
+  pointer-events:none;
+}
+.artist-fan-card img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  filter:grayscale(.18) contrast(1.04);
+}
+.artist-fan-card.is-gary   { left:3%;  transform:rotate(-20deg); z-index:1; }
+.artist-fan-card.is-gina   { left:22%; transform:rotate(-7deg);  z-index:3; }
+.artist-fan-card.is-skyler {
+  left:47%;
+  transform:rotate(7deg);
+  z-index:4;
+  background:radial-gradient(circle at top, rgba(122,18,18,.28), rgba(13,13,13,.98) 60%);
+}
+.artist-fan-card.is-kim    { left:66%; transform:rotate(20deg);  z-index:2; }
+.artist-fan-card:hover { border-color:rgba(224,185,106,.38); box-shadow:0 26px 90px rgba(0,0,0,.6); }
+.artist-fan-card.is-gary:hover   { transform:rotate(-20deg) translateY(-22px); z-index:10; }
+.artist-fan-card.is-gina:hover   { transform:rotate(-7deg)  translateY(-22px); z-index:10; }
+.artist-fan-card.is-skyler:hover { transform:rotate(7deg)   translateY(-22px); z-index:10; }
+.artist-fan-card.is-kim:hover    { transform:rotate(20deg)  translateY(-22px); z-index:10; }
+.artist-fan-copy {
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  z-index:2;
+  padding:18px 18px 20px;
+}
+.artist-fan-name {
+  font-family:var(--font-heading);
+  font-size:1rem;
+  text-transform:uppercase;
+  letter-spacing:.07em;
+}
+.artist-fan-role {
+  font-family:var(--font-ui);
+  font-size:.58rem;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--gold);
+  margin-top:5px;
+}
+.artist-fan-link {
+  font-family:var(--font-ui);
+  font-size:.54rem;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--text-muted);
+  margin-top:8px;
+}
+@keyframes fanFloat {
+  0%, 100% { transform:translateY(0); }
+  50% { transform:translateY(-10px); }
+}
+@media (max-width: 1040px) {
+  .hero-grid { grid-template-columns:1fr; }
+  .fan-wrap { min-height:560px; }
+}
+@media (max-width: 760px) {
+  .hero { min-height:auto; padding:36px 0 64px; }
+  .fan-wrap { min-height:auto; }
+  .fan-ring { display:none; }
+  .fan-stage {
+    width:100%;
+    height:auto;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+    animation:none;
+  }
+  .artist-fan-card,
+  .artist-fan-card.is-gary,
+  .artist-fan-card.is-gina,
+  .artist-fan-card.is-skyler,
+  .artist-fan-card.is-kim,
+  .artist-fan-card.is-gary:hover,
+  .artist-fan-card.is-gina:hover,
+  .artist-fan-card.is-skyler:hover,
+  .artist-fan-card.is-kim:hover {
+    position:relative;
+    inset:auto;
+    left:auto;
+    top:auto;
+    margin-left:0;
+    width:100%;
+    height:280px;
+    transform:none;
+    transform-origin:initial;
+  }
+}
+@media (max-width: 520px) {
+  .fan-stage { grid-template-columns:1fr; }
+  .artist-fan-card,
+  .artist-fan-card.is-gary,
+  .artist-fan-card.is-gina,
+  .artist-fan-card.is-skyler,
+  .artist-fan-card.is-kim { height:240px; }
+}
+</style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="../index.html">
+        <img src="../DTT Logo v2.png" alt="Dark Tower Tattoo">
+        <span>Dark Tower</span>
+      </a>
+      <a class="back-link" href="../index.html">Back to Home</a>
+    </div>
+  </header>
+
+  <main class="hero">
+    <div class="container hero-grid">
+      <section>
+        <span class="eyebrow">Artists &amp; Piercers</span>
+        <h1 class="title">Choose Your Artist</h1>
+        <p class="intro">Browse the Dark Tower crew here, then jump straight into the artist page you want. Use the dropdown for the fastest path, or click a card from the fan layout.</p>
+
+        <div class="picker-panel">
+          <label class="picker-label" for="artistSelect">Select an artist</label>
+          <select class="picker" id="artistSelect" aria-label="Select an artist page">
+            <option value="">Choose an artist</option>
+            <option value="gary.html">Gary Aldrich</option>
+            <option value="gina.html">Gina Carbone</option>
+            <option value="skyler.html">Skyler Cook</option>
+            <option value="kim.html">Kim Cipriani</option>
+          </select>
+          <div class="cta-row">
+            <a class="btn primary" href="../index.html#contact">Call the Shop</a>
+            <a class="btn ghost" href="https://www.instagram.com/dark_tower_tattoo/" target="_blank" rel="noopener">Shop Instagram</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="fan-wrap" aria-label="Artist gallery links">
+        <div class="fan-ring" aria-hidden="true"></div>
+        <div class="fan-stage">
+          <a class="artist-fan-card is-gary" href="gary.html" aria-label="View Gary Aldrich gallery">
+            <img src="../GARY.jpeg" alt="Gary Aldrich">
+            <div class="artist-fan-copy">
+              <h2 class="artist-fan-name">Gary Aldrich</h2>
+              <p class="artist-fan-role">Owner · Tattoo Artist</p>
+              <p class="artist-fan-link">Open gallery</p>
+            </div>
+          </a>
+
+          <a class="artist-fan-card is-gina" href="gina.html" aria-label="View Gina Carbone gallery">
+            <img src="../Gina C.jpg" alt="Gina Carbone">
+            <div class="artist-fan-copy">
+              <h2 class="artist-fan-name">Gina Carbone</h2>
+              <p class="artist-fan-role">Professional Piercer</p>
+              <p class="artist-fan-link">Open gallery</p>
+            </div>
+          </a>
+
+          <a class="artist-fan-card is-skyler" href="skyler.html" aria-label="View Skyler Cook profile">
+            <img src="../Skyler/skyler.JPG" alt="Skyler Cook">
+            <div class="artist-fan-copy">
+              <h2 class="artist-fan-name">Skyler Cook</h2>
+              <p class="artist-fan-role">Tattoo Artist</p>
+              <p class="artist-fan-link">Open gallery</p>
+            </div>
+          </a>
+
+          <a class="artist-fan-card is-kim" href="kim.html" aria-label="View Kim Cipriani gallery">
+            <img src="../Kim/IMG_0898.JPEG" alt="Kim Cipriani">
+            <div class="artist-fan-copy">
+              <h2 class="artist-fan-name">Kim Cipriani</h2>
+              <p class="artist-fan-role">Tattoo Artist</p>
+              <p class="artist-fan-link">Open gallery</p>
+            </div>
+          </a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    const artistSelect = document.getElementById('artistSelect');
+
+    artistSelect.addEventListener('change', () => {
+      if (!artistSelect.value) return;
+      window.location.href = artistSelect.value;
+    });
+  </script>
+</body>
+</html>

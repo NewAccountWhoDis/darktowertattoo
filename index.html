@@ -1,0 +1,1903 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Dark Tower Tattoo — Custom tattoos and professional piercing in Troy, NY. Walk-ins welcome, open 7 days a week.">
+<meta name="theme-color" content="#060606">
+<title>Dark Tower Tattoo | Troy, NY | Custom Tattoo &amp; Piercing Studio</title>
+<link rel="preload" as="image" href="Dark Tower Logo wht.png">
+<link rel="preload" as="image" href="skull.png">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;500;600&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Oswald:wght@300;400;500;600&family=Pirata+One&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   RESET & ROOT
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --black:       #060606;
+  --surface:     #0e0e0e;
+  --card:        #131313;
+  --border:      #1c1c1c;
+  --border-mid:  #2a2a2a;
+  --gold:        #c4943a;
+  --gold-dim:    #8a6830;
+  --gold-light:  #e0b96a;
+  --crimson:     #7a1212;
+  --text:        #e2dbd0;
+  --text-muted:  #8a837a;
+  --text-faint:  #42403d;
+  --font-display: 'Cinzel Decorative', serif;
+  --font-heading: 'Cinzel', serif;
+  --font-body:    'Crimson Text', serif;
+  --font-ui:      'Oswald', sans-serif;
+  --font-hero:    'Pirata One', serif;
+  --radius:       2px;
+  --transition:   0.28s ease;
+}
+
+html { scroll-behavior: smooth; font-size: 16px; }
+section { scroll-margin-top: 92px; }
+
+body {
+  background: var(--black);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* Grain texture overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+  opacity: 0.028;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+img { display: block; max-width: 100%; }
+a  { color: inherit; text-decoration: none; }
+button { cursor: pointer; border: none; background: none; font-family: inherit; }
+#hero, footer, .mobile-dock { content-visibility: visible; contain-intrinsic-size: auto; }
+
+/* ============================================================
+   UTILITIES
+   ============================================================ */
+.container { width: 100%; max-width: 1240px; margin: 0 auto; padding: 0 24px; }
+
+.gold-rule {
+  width: 60px; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  margin: 0 auto 1.5rem;
+}
+.gold-rule--left { margin-left: 0; }
+
+.section-label {
+  display: block;
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.75rem;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 2.4rem);
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.15;
+  margin-bottom: 0.5rem;
+}
+
+/* Scroll entrance animation */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+}
+
+/* ============================================================
+   NAVIGATION
+   ============================================================ */
+#nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  transition: background 0.35s ease, box-shadow 0.35s ease;
+  padding: 0;
+}
+#nav.scrolled {
+  background: rgba(6, 6, 6, 0.97);
+  box-shadow: 0 1px 0 var(--border), 0 8px 32px rgba(0,0,0,0.6);
+  backdrop-filter: blur(12px);
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 68px;
+  padding: 0 28px;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+#nav.scrolled .nav-logo { opacity: 1; }
+
+.nav-logo img {
+  height: 42px;
+  width: auto;
+  filter: brightness(0) invert(1);
+}
+.nav-logo-text {
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  color: var(--text);
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+.nav-logo-text span {
+  display: block;
+  font-size: 0.65rem;
+  color: var(--gold);
+  letter-spacing: 0.2em;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  list-style: none;
+}
+.nav-links a {
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  transition: color var(--transition);
+  position: relative;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -3px; left: 0;
+  width: 0; height: 1px;
+  background: var(--gold);
+  transition: width var(--transition);
+}
+.nav-links a:hover { color: var(--gold); }
+.nav-links a:hover::after { width: 100%; }
+
+.nav-cta {
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #fff4ef;
+  border-color: rgba(127,22,22,0.62);
+  background:
+    radial-gradient(circle at top, rgba(255,255,255,0.16), transparent 58%),
+    linear-gradient(180deg, rgba(127,22,22,0.26), rgba(122,18,18,0.14));
+  padding: 9px 22px;
+}
+
+/* Hamburger */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  padding: 6px;
+  cursor: pointer;
+  z-index: 1001;
+}
+.hamburger span {
+  display: block; width: 24px; height: 1px;
+  background: var(--text);
+  transition: all 0.25s ease;
+}
+.hamburger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+.mobile-menu {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(6,6,6,0.98);
+  z-index: 999;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5rem;
+  backdrop-filter: blur(12px);
+}
+.mobile-menu::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at center, rgba(122,18,18,0.18), transparent 52%),
+    url("skull.png") center/contain no-repeat;
+  opacity: 0.12;
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+.mobile-menu.open { display: flex; }
+.mobile-menu a {
+  position: relative;
+  z-index: 1;
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  letter-spacing: 0.1em;
+  color: var(--text);
+  transition: color var(--transition);
+}
+.mobile-menu a:hover { color: var(--gold); }
+.mobile-menu .mobile-cta {
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--black);
+  background: var(--gold);
+  padding: 14px 40px;
+  margin-top: 1rem;
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+#hero {
+  position: relative;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 100px 24px 80px;
+  text-align: center;
+}
+
+/* Background */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 70% at 50% 40%, #1a0a0a 0%, #060606 65%);
+  z-index: 0;
+}
+
+/* Skull art decorative */
+.hero-skull {
+  position: absolute;
+  right: clamp(-60px, 1vw, 20px);
+  bottom: clamp(-40px, 2vw, 10px);
+  width: clamp(260px, 34vw, 520px);
+  opacity: 0.12;
+  z-index: 1;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  filter: grayscale(1) brightness(1.15) contrast(1.05) drop-shadow(0 0 26px rgba(196,148,58,0.12));
+  transform: translate3d(0, 0, 0);
+}
+
+/* Vignette */
+#hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 100% 50% at 50% 100%, rgba(122,18,18,0.18) 0%, transparent 60%),
+    radial-gradient(ellipse 100% 50% at 50% 0%, rgba(0,0,0,0.7) 0%, transparent 70%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  perspective: 1400px;
+}
+
+.hero-logo {
+  width: clamp(240px, 40vw, 460px);
+  animation: heroLogoGlow 4.6s ease-in-out 1.5s infinite;
+  opacity: 0;
+  filter:
+    drop-shadow(0 0 10px rgba(255,255,255,0.18))
+    drop-shadow(0 0 26px rgba(196,148,58,0.16))
+    drop-shadow(0 0 56px rgba(196,148,58,0.12));
+  transform-style: preserve-3d;
+  transform-origin: center center;
+  will-change: transform;
+}
+
+.hero-logo.is-spinning {
+  animation:
+    heroLogoReveal 1.5s cubic-bezier(0.22, 1, 0.36, 1) forwards,
+    heroLogoSpin 1.8s cubic-bezier(0.22, 1, 0.36, 1) 0.1s,
+    heroLogoGlow 4.6s ease-in-out 1.5s infinite;
+}
+
+@keyframes heroFadeIn {
+  from { opacity: 0; transform: scale(0.92) translateY(16px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+@keyframes heroLogoReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(22px) scale(0.92);
+    filter:
+      drop-shadow(0 0 0 rgba(255,255,255,0))
+      drop-shadow(0 0 0 rgba(196,148,58,0));
+  }
+  55% {
+    opacity: 1;
+    transform: translateY(0) scale(1.02);
+    filter:
+      drop-shadow(0 0 14px rgba(255,255,255,0.28))
+      drop-shadow(0 0 38px rgba(196,148,58,0.22))
+      drop-shadow(0 0 78px rgba(196,148,58,0.18));
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter:
+      drop-shadow(0 0 10px rgba(255,255,255,0.18))
+      drop-shadow(0 0 26px rgba(196,148,58,0.16))
+      drop-shadow(0 0 56px rgba(196,148,58,0.12));
+  }
+}
+@keyframes heroLogoGlow {
+  0%, 100% {
+    filter:
+      drop-shadow(0 0 10px rgba(255,255,255,0.18))
+      drop-shadow(0 0 26px rgba(196,148,58,0.16))
+      drop-shadow(0 0 56px rgba(196,148,58,0.12));
+  }
+  50% {
+    filter:
+      drop-shadow(0 0 14px rgba(255,255,255,0.26))
+      drop-shadow(0 0 36px rgba(196,148,58,0.24))
+      drop-shadow(0 0 76px rgba(196,148,58,0.18));
+  }
+}
+@keyframes heroLogoSpin {
+  0% { transform: perspective(1400px) rotateY(0deg); }
+  40% { transform: perspective(1400px) rotateY(180deg); }
+  100% { transform: perspective(1400px) rotateY(360deg); }
+}
+
+.hero-eyebrow {
+  font-family: var(--font-ui);
+  font-size: 0.65rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-top: 2.5rem;
+  margin-bottom: 1.2rem;
+  animation: heroFadeIn 1.2s 0.2s ease forwards;
+  opacity: 0;
+}
+
+.hero-tagline {
+  font-family: var(--font-hero);
+  font-size: clamp(2.6rem, 6vw, 5.4rem);
+  color: var(--text);
+  line-height: 1.02;
+  letter-spacing: 0.04em;
+  text-shadow: 0 0 60px rgba(196,148,58,0.12);
+  animation: heroFadeIn 1.2s 0.35s ease forwards;
+  opacity: 0;
+  max-width: 10ch;
+}
+
+.hero-sub {
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 1.8vw, 1.2rem);
+  color: var(--text-muted);
+  margin-top: 1.2rem;
+  font-style: italic;
+  animation: heroFadeIn 1.2s 0.5s ease forwards;
+  opacity: 0;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 16px;
+  margin-top: 2.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  animation: heroFadeIn 1.2s 0.65s ease forwards;
+  opacity: 0;
+}
+
+.btn-primary,
+.btn-ghost,
+.nav-cta,
+.service-link,
+.social-pill,
+.map-cta,
+.aftercare-link,
+.mobile-dock a {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  overflow: hidden;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background:
+    radial-gradient(circle at top, rgba(255,255,255,0.18), transparent 58%),
+    linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+  color: var(--text);
+  box-shadow:
+    0 14px 34px rgba(0,0,0,0.28),
+    inset 0 1px 0 rgba(255,255,255,0.12),
+    inset 0 -1px 0 rgba(255,255,255,0.03);
+  backdrop-filter: blur(16px) saturate(155%);
+  -webkit-backdrop-filter: blur(16px) saturate(155%);
+  transition:
+    transform var(--transition),
+    border-color var(--transition),
+    box-shadow var(--transition),
+    background var(--transition),
+    color var(--transition),
+    gap var(--transition);
+}
+.btn-primary::before,
+.btn-ghost::before,
+.nav-cta::before,
+.service-link::before,
+.social-pill::before,
+.map-cta::before,
+.aftercare-link::before,
+.mobile-dock a::before {
+  content: '';
+  position: absolute;
+  inset: 1px;
+  border-radius: inherit;
+  background:
+    radial-gradient(circle at bottom, rgba(122,18,18,0.2), transparent 52%),
+    linear-gradient(180deg, rgba(255,255,255,0.1), rgba(255,255,255,0.02));
+  opacity: 0.95;
+  pointer-events: none;
+}
+.btn-primary::after,
+.btn-ghost::after,
+.nav-cta::after,
+.service-link::after,
+.social-pill::after,
+.map-cta::after,
+.aftercare-link::after,
+.mobile-dock a::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background:
+    radial-gradient(circle at 50% 110%, rgba(207,45,45,0.34), transparent 48%),
+    linear-gradient(120deg, transparent 24%, rgba(255,255,255,0.18) 42%, transparent 58%);
+  opacity: 0;
+  transition: opacity var(--transition);
+  pointer-events: none;
+}
+.btn-primary > *,
+.btn-ghost > *,
+.nav-cta > *,
+.service-link > *,
+.social-pill > *,
+.map-cta > *,
+.aftercare-link > *,
+.mobile-dock a > * {
+  position: relative;
+  z-index: 1;
+}
+.btn-primary:hover,
+.btn-primary:focus-visible,
+.btn-ghost:hover,
+.btn-ghost:focus-visible,
+.nav-cta:hover,
+.nav-cta:focus-visible,
+.service-link:hover,
+.service-link:focus-visible,
+.social-pill:hover,
+.social-pill:focus-visible,
+.map-cta:hover,
+.map-cta:focus-visible,
+.aftercare-link:hover,
+.aftercare-link:focus-visible,
+.mobile-dock a:hover,
+.mobile-dock a:focus-visible {
+  border-color: rgba(179,37,37,0.72);
+  color: #fff7f2;
+  background:
+    radial-gradient(circle at top, rgba(255,255,255,0.18), transparent 58%),
+    linear-gradient(180deg, rgba(179,37,37,0.24), rgba(110,18,18,0.16));
+  box-shadow:
+    0 18px 44px rgba(80,10,10,0.34),
+    inset 0 1px 0 rgba(255,255,255,0.14),
+    inset 0 -1px 0 rgba(255,255,255,0.05);
+  transform: translateY(-2px) scale(1.01);
+}
+.btn-primary:hover::after,
+.btn-primary:focus-visible::after,
+.btn-ghost:hover::after,
+.btn-ghost:focus-visible::after,
+.nav-cta:hover::after,
+.nav-cta:focus-visible::after,
+.service-link:hover::after,
+.service-link:focus-visible::after,
+.social-pill:hover::after,
+.social-pill:focus-visible::after,
+.map-cta:hover::after,
+.map-cta:focus-visible::after,
+.aftercare-link:hover::after,
+.aftercare-link:focus-visible::after,
+.mobile-dock a:hover::after,
+.mobile-dock a:focus-visible::after {
+  opacity: 1;
+}
+.btn-primary:active,
+.btn-ghost:active,
+.nav-cta:active,
+.service-link:active,
+.social-pill:active,
+.map-cta:active,
+.aftercare-link:active,
+.mobile-dock a:active {
+  transform: translateY(1px) scale(0.985);
+  background:
+    radial-gradient(circle at top, rgba(255,255,255,0.16), transparent 58%),
+    linear-gradient(180deg, rgba(207,45,45,0.28), rgba(122,18,18,0.2));
+  box-shadow:
+    0 10px 24px rgba(44,6,6,0.32),
+    inset 0 1px 0 rgba(255,255,255,0.1);
+}
+
+.btn-primary {
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #fff4ef;
+  border-color: rgba(127,22,22,0.62);
+  background:
+    radial-gradient(circle at top, rgba(255,255,255,0.16), transparent 58%),
+    linear-gradient(180deg, rgba(127,22,22,0.26), rgba(122,18,18,0.14));
+  min-height: 52px;
+  padding: 15px 36px;
+}
+
+.btn-ghost {
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text);
+  padding: 15px 36px;
+}
+
+.hero-kicker {
+  margin-top: 1.25rem;
+  font-family: var(--font-ui);
+  font-size: 0.64rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+.hero-quickbar {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  width: min(980px, 100%);
+  margin-top: 2.5rem;
+  animation: heroFadeIn 1.2s 0.8s ease forwards;
+  opacity: 0;
+}
+.hero-quickcard {
+  background: linear-gradient(180deg, rgba(19,19,19,0.82), rgba(8,8,8,0.94));
+  border: 1px solid rgba(196,148,58,0.15);
+  padding: 18px 20px;
+  text-align: left;
+  min-height: 118px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.32);
+  transition: transform 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease;
+}
+.hero-quickcard:hover {
+  transform: translateY(-4px);
+  border-color: rgba(224,185,106,0.38);
+  box-shadow: 0 24px 80px rgba(0,0,0,0.45);
+}
+.hero-quickcard-label {
+  display: block;
+  font-family: var(--font-ui);
+  font-size: 0.55rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.75rem;
+}
+.hero-quickcard-title {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  color: var(--text);
+  line-height: 1.3;
+}
+.hero-quickcard-copy {
+  color: var(--text-muted);
+  font-size: 0.96rem;
+  margin-top: 0.45rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-logo, .hero-eyebrow, .hero-tagline, .hero-sub, .hero-actions, .hero-quickbar {
+    animation: none; opacity: 1;
+  }
+}
+
+/* ============================================================
+   MARQUEE / TICKER
+   ============================================================ */
+/* ============================================================
+   ABOUT
+   ============================================================ */
+#about {
+  padding: 120px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.about-text {}
+
+.about-text p {
+  color: var(--text-muted);
+  margin-top: 1.5rem;
+  font-size: 1.12rem;
+}
+.about-text p + p { margin-top: 1rem; }
+
+.about-text .highlight {
+  color: var(--text);
+  font-style: italic;
+  font-size: 1.3rem;
+  line-height: 1.5;
+  margin-top: 2rem;
+  padding-left: 1.25rem;
+  border-left: 2px solid var(--gold);
+}
+
+.about-actions { margin-top: 2.5rem; display: flex; gap: 14px; flex-wrap: wrap; }
+
+.about-image {
+  position: relative;
+}
+.about-image-frame {
+  position: relative;
+  overflow: hidden;
+}
+.about-image-frame::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border: 1px solid var(--gold-dim);
+  z-index: 2;
+  pointer-events: none;
+}
+.about-image-frame::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 60%, rgba(6,6,6,0.8));
+  z-index: 1;
+  pointer-events: none;
+}
+.about-image-frame img {
+  width: 100%;
+  height: 520px;
+  object-fit: cover;
+  object-position: center top;
+  filter: grayscale(20%) contrast(1.05);
+  transition: transform 0.6s ease;
+}
+.about-image-frame:hover img { transform: scale(1.03); }
+
+.about-corner {
+  position: absolute;
+  width: 20px; height: 20px;
+  border-color: var(--gold);
+  border-style: solid;
+}
+.about-corner--tl { top: -8px; left: -8px; border-width: 2px 0 0 2px; }
+.about-corner--br { bottom: -8px; right: -8px; border-width: 0 2px 2px 0; }
+
+.about-stat-bar {
+  display: flex;
+  gap: 40px;
+  margin-top: 48px;
+  padding-top: 40px;
+  border-top: 1px solid var(--border);
+}
+.about-stat {}
+.about-stat-num {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  color: var(--gold);
+  line-height: 1;
+}
+.about-stat-label {
+  font-family: var(--font-ui);
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+/* ============================================================
+   ARTISTS
+   ============================================================ */
+#artists {
+  padding: 120px 0;
+  background: var(--surface);
+  position: relative;
+}
+#artists::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border-mid), transparent);
+}
+
+.artists-header {
+  text-align: center;
+  margin-bottom: 72px;
+}
+
+.artists-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+}
+
+.artist-card {
+  position: relative;
+  overflow: hidden;
+  background: var(--card);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.artist-card-link {
+  display: block;
+}
+.artist-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+}
+
+.artist-photo {
+  position: relative;
+  aspect-ratio: 3/4;
+  overflow: hidden;
+}
+
+.artist-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  filter: grayscale(25%) contrast(1.05);
+  transition: transform 0.55s ease, filter 0.55s ease;
+}
+.artist-card:hover .artist-photo img {
+  transform: scale(1.06);
+  filter: grayscale(0%) contrast(1.08);
+}
+
+.artist-photo-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 40%, rgba(6,6,6,0.95) 100%);
+  z-index: 1;
+}
+
+/* Gold accent line on hover */
+.artist-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transition: transform 0.35s ease;
+  z-index: 3;
+}
+.artist-card:hover::after { transform: scaleX(1); }
+
+.artist-info {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 24px 20px;
+  z-index: 2;
+}
+
+.artist-name {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  color: var(--text);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.artist-role {
+  font-family: var(--font-ui);
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-top: 4px;
+}
+.artist-social {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+.artist-social a {
+  font-family: var(--font-ui);
+  font-size: 0.58rem;
+  letter-spacing: 0.15em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  transition: color var(--transition);
+}
+.artist-social a:hover { color: var(--gold); }
+
+.artist-link-label {
+  margin-top: 10px;
+  font-family: var(--font-ui);
+  font-size: 0.58rem;
+  letter-spacing: 0.16em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  transition: color var(--transition);
+}
+.artist-card:hover .artist-link-label { color: var(--gold); }
+
+/* ============================================================
+   SERVICES
+   ============================================================ */
+#services {
+  padding: 120px 0;
+  position: relative;
+}
+
+.services-header {
+  text-align: center;
+  margin-bottom: 72px;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+}
+
+.service-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  padding: 52px 36px;
+  transition: border-color var(--transition), transform 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 2px; height: 0;
+  background: var(--gold);
+  transition: height 0.4s ease;
+}
+.service-card:hover { border-color: var(--border-mid); }
+.service-card:hover::before { height: 100%; }
+
+.service-number {
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  color: var(--text-faint);
+  margin-bottom: 28px;
+}
+.service-title {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  color: var(--text);
+  margin-bottom: 16px;
+  line-height: 1.2;
+}
+.service-desc {
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+}
+.service-link {
+  gap: 8px;
+  margin-top: 28px;
+  font-family: var(--font-ui);
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text);
+  padding: 12px 18px;
+  width: fit-content;
+}
+.service-link:hover { gap: 14px; }
+.service-link::after {
+  content: '→';
+  position: relative;
+  inset: auto;
+  border-radius: 0;
+  background: none;
+  opacity: 1;
+  font-size: 0.8rem;
+  transition: transform var(--transition);
+}
+.service-link:hover::after { transform: translateX(4px); }
+
+/* ============================================================
+   HOURS & CONTACT
+   ============================================================ */
+#contact {
+  padding: 120px 0;
+  position: relative;
+}
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+.contact-info {}
+.contact-info p {
+  color: var(--text-muted);
+  margin-top: 1.2rem;
+  font-size: 1.08rem;
+}
+
+.hours-table {
+  width: 100%;
+  margin-top: 2rem;
+  border-collapse: collapse;
+}
+.hours-table tr {
+  border-bottom: 1px solid var(--border);
+}
+.hours-table tr:last-child { border-bottom: none; }
+.hours-table td {
+  padding: 12px 0;
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+}
+.hours-table td:first-child {
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+.hours-table td:last-child {
+  color: var(--gold);
+  text-align: right;
+}
+.hours-note {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 0.9rem;
+  color: var(--text-faint);
+  margin-top: 12px;
+}
+
+.contact-details {
+  margin-top: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.contact-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.contact-item-label {
+  font-family: var(--font-ui);
+  font-size: 0.58rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+.contact-item-value {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  color: var(--text);
+  transition: color var(--transition);
+}
+a.contact-item-value:hover { color: var(--gold); }
+
+.contact-social {
+  display: flex;
+  gap: 16px;
+  margin-top: 2.5rem;
+}
+.social-pill {
+  font-family: var(--font-ui);
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text);
+  padding: 10px 20px;
+}
+
+.contact-map {
+  background: var(--card);
+  border: 1px solid var(--border);
+  position: relative;
+}
+.map-frame {
+  width: 100%;
+  height: 340px;
+  background: var(--card);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.map-frame iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  filter: grayscale(90%) contrast(1.1) invert(0.88);
+  opacity: 0.7;
+}
+.map-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 60%, var(--card));
+  pointer-events: none;
+  z-index: 1;
+}
+.map-info {
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.map-address {
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  color: var(--text);
+  letter-spacing: 0.05em;
+}
+.map-cta {
+  font-family: var(--font-ui);
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text);
+  padding: 12px 18px;
+  width: fit-content;
+}
+
+/* ============================================================
+   AFTERCARE BANNER
+   ============================================================ */
+.aftercare-banner {
+  background: var(--card);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 40px 0;
+}
+.aftercare-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+.aftercare-text {
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  color: var(--text-muted);
+}
+.aftercare-text strong { color: var(--text); font-style: normal; }
+.aftercare-link {
+  font-family: var(--font-ui);
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text);
+  white-space: nowrap;
+  padding: 12px 18px;
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer {
+  background: var(--black);
+  border-top: 1px solid var(--border);
+  padding: 72px 0 40px;
+}
+
+.mobile-dock {
+  display: none;
+  position: fixed;
+  left: 14px;
+  right: 14px;
+  bottom: max(14px, env(safe-area-inset-bottom));
+  z-index: 1200;
+  background: rgba(6,6,6,0.94);
+  border: 1px solid rgba(196,148,58,0.16);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 18px 48px rgba(0,0,0,0.38);
+}
+.mobile-dock-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+.mobile-dock a {
+  font-family: var(--font-ui);
+  font-size: 0.58rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  min-height: 48px;
+  padding: 12px 8px;
+  text-align: center;
+  border-radius: 0;
+  background:
+    radial-gradient(circle at top, rgba(255,255,255,0.12), transparent 58%),
+    linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+.mobile-dock a + a {
+  border-left: 1px solid rgba(196,148,58,0.12);
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  gap: 60px;
+  margin-bottom: 60px;
+}
+.footer-brand img {
+  height: 72px;
+  width: auto;
+  filter: brightness(0) invert(1) opacity(0.7);
+  margin-bottom: 20px;
+}
+.footer-tagline {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--text-muted);
+  max-width: 260px;
+}
+.footer-socials {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+}
+.footer-social {
+  font-family: var(--font-ui);
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  border: 1px solid var(--border-mid);
+  padding: 8px 16px;
+  transition: border-color var(--transition), color var(--transition);
+}
+.footer-social:hover { border-color: var(--gold); color: var(--gold); }
+
+.footer-col-title {
+  font-family: var(--font-ui);
+  font-size: 0.62rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 20px;
+}
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  list-style: none;
+}
+.footer-links a {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  transition: color var(--transition);
+}
+.footer-links a:hover { color: var(--text); }
+
+.footer-bottom {
+  padding-top: 32px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.footer-copy {
+  font-family: var(--font-ui);
+  font-size: 0.58rem;
+  letter-spacing: 0.15em;
+  color: var(--text-faint);
+  text-transform: uppercase;
+}
+.footer-legal {
+  font-family: var(--font-ui);
+  font-size: 0.58rem;
+  letter-spacing: 0.1em;
+  color: var(--text-faint);
+  text-transform: uppercase;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 1024px) {
+  .about-grid { grid-template-columns: 1fr; gap: 52px; }
+  .about-image { display: none; }
+  .artists-grid { grid-template-columns: repeat(2, 1fr); }
+  .services-grid { grid-template-columns: 1fr 1fr; }
+  .contact-grid { grid-template-columns: 1fr; gap: 52px; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .hero-quickbar { grid-template-columns: 1fr; max-width: 520px; }
+}
+
+@media (max-width: 768px) {
+  .nav-links, .nav-cta { display: none; }
+  .hamburger { display: flex; }
+  #nav.scrolled .nav-logo { opacity: 1; }
+
+  .artists-grid { grid-template-columns: 1fr 1fr; }
+  .services-grid { grid-template-columns: 1fr; }
+  .about-stat-bar { gap: 24px; }
+  .footer-grid { grid-template-columns: 1fr; gap: 36px; }
+  .footer-bottom { flex-direction: column; text-align: center; }
+  .aftercare-inner { flex-direction: column; gap: 16px; }
+  .hero-kicker { line-height: 1.7; padding: 0 10px; }
+  .mobile-dock { display: block; }
+  body { padding-bottom: 88px; }
+}
+
+@media (max-width: 480px) {
+  .artists-grid { grid-template-columns: 1fr; }
+  .hero-actions { flex-direction: column; align-items: center; }
+  .about-actions { flex-direction: column; }
+  .hero-quickcard { min-height: auto; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ============================================================
+     NAVIGATION
+     ============================================================ -->
+<nav id="nav" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="#hero" class="nav-logo" aria-label="Dark Tower Tattoo Home">
+      <img src="DTT Logo v2.png" alt="Dark Tower Tattoo logo">
+      <div class="nav-logo-text">
+        Dark Tower
+        <span>Tattoo Studio</span>
+      </div>
+    </a>
+
+    <ul class="nav-links" role="list">
+      <li><a href="#about">About</a></li>
+      <li><a href="artists/index.html">Artists</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+
+    <a href="tel:+15182037730" class="nav-cta" aria-label="Call Dark Tower Tattoo">
+      (518) 203-7730
+    </a>
+
+    <button class="hamburger" id="hamburger" aria-label="Open navigation menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile menu -->
+<nav class="mobile-menu" id="mobileMenu" aria-label="Mobile navigation" aria-hidden="true">
+  <a href="#about"    onclick="closeMenu()">About</a>
+  <a href="artists/index.html"  onclick="closeMenu()">Artists</a>
+  <a href="#services" onclick="closeMenu()">Services</a>
+  <a href="#contact"  onclick="closeMenu()">Contact</a>
+  <a href="tel:+15182037730" class="mobile-cta" onclick="closeMenu()">(518) 203-7730</a>
+</nav>
+
+
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+<section id="hero" aria-label="Welcome to Dark Tower Tattoo">
+  <div class="hero-bg"></div>
+    <img
+    src="skull.png"
+    alt=""
+    class="hero-skull"
+    aria-hidden="true"
+    fetchpriority="high"
+  >
+
+  <div class="hero-content">
+    <img
+      src="Dark Tower Logo wht.png"
+      alt="Dark Tower Tattoo"
+      class="hero-logo"
+      fetchpriority="high"
+    >
+
+    <span class="hero-eyebrow">Troy, New York · Est. in the 518</span>
+
+    <p class="hero-sub">
+      Custom tattoos. Professional piercing. Walk-ins welcome.
+    </p>
+
+    <p class="hero-kicker">564 Hoosick St, Troy, NY · Open daily 11am to 8pm · Walk-ins welcome</p>
+
+    <div class="hero-actions">
+      <a href="artists/index.html" class="btn-primary">Meet the Artists</a>
+      <a href="#contact" class="btn-ghost">Hours &amp; Location</a>
+    </div>
+
+    <div class="hero-quickbar" aria-label="Quick actions">
+      <a href="tel:+15182037730" class="hero-quickcard">
+        <span class="hero-quickcard-label">Call the Shop</span>
+        <div class="hero-quickcard-title">(518) 203-7730</div>
+        <p class="hero-quickcard-copy">Talk to the shop directly about walk-ins, consults, and availability.</p>
+      </a>
+      <a href="https://piercingbyginabooking.as.me/" target="_blank" rel="noopener" class="hero-quickcard">
+        <span class="hero-quickcard-label">Book with Gina</span>
+        <div class="hero-quickcard-title">Professional piercing appointments</div>
+        <p class="hero-quickcard-copy">Direct booking for piercing services with Gina Carbone.</p>
+      </a>
+      <a href="https://maps.google.com/?q=564+Hoosick+St,+Troy,+NY+12180" target="_blank" rel="noopener" class="hero-quickcard">
+        <span class="hero-quickcard-label">Get Directions</span>
+        <div class="hero-quickcard-title">564 Hoosick St, Troy NY</div>
+        <p class="hero-quickcard-copy">Easy mobile jump-off for directions when someone is ready to head over.</p>
+      </a>
+    </div>
+  </div>
+
+</section>
+
+
+<!-- ============================================================
+     ABOUT
+     ============================================================ -->
+<section id="about" aria-labelledby="about-heading">
+  <div class="container">
+    <div class="about-grid">
+
+      <div class="about-text reveal">
+        <span class="section-label">Our Story</span>
+        <div class="gold-rule gold-rule--left"></div>
+        <h2 id="about-heading" class="section-title">Built for the Work.<br>Built for Troy.</h2>
+
+        <p>
+          Dark Tower Tattoo is a unique and welcoming tattoo shop that specializes in custom designs.
+          We believe your body is a canvas, and we are your artists. We take pride in our work and
+          strive to create art that is as unique as you are.
+        </p>
+        <p>
+          Our team of highly experienced professional artists are passionate about their craft and
+          dedicated to giving you the best experience possible.
+        </p>
+        <p>
+          Stop by to book an appointment today and let us turn your vision into a reality.
+        </p>
+
+        <blockquote class="highlight">
+          "We take pride in our work and strive to create art that is as unique as you are."
+        </blockquote>
+
+        <div class="about-actions">
+          <a href="artists/index.html" class="btn-primary">See the Artists</a>
+          <a href="tel:+15182037730" class="btn-ghost">Call the Shop</a>
+        </div>
+
+        <div class="about-stat-bar">
+          <div class="about-stat">
+            <div class="about-stat-num">11–8</div>
+            <div class="about-stat-label">Every Day</div>
+          </div>
+          <div class="about-stat">
+            <div class="about-stat-num">Walk-In</div>
+            <div class="about-stat-label">Always Welcome</div>
+          </div>
+          <div class="about-stat">
+            <div class="about-stat-num">518</div>
+            <div class="about-stat-label">Area Code Proud</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-image reveal">
+        <div class="about-image-frame">
+          <img src="GARY.jpeg" alt="Gary Aldrich, Owner and Artist at Dark Tower Tattoo">
+        </div>
+        <div class="about-corner about-corner--tl"></div>
+        <div class="about-corner about-corner--br"></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     ARTISTS
+     ============================================================ -->
+<section id="artists" aria-labelledby="artists-heading">
+  <div class="container">
+    <div class="artists-header reveal">
+      <span class="section-label">The Crew</span>
+      <div class="gold-rule"></div>
+      <h2 id="artists-heading" class="section-title">Meet the Artists</h2>
+    </div>
+
+    <div class="artists-grid">
+
+      <!-- Gary Aldrich -->
+      <a class="artist-card artist-card-link reveal" href="artists/gary.html" aria-label="View Gary Aldrich artist page">
+        <div class="artist-photo">
+          <img src="GARY.jpeg" alt="Gary Aldrich, Owner and Tattoo Artist">
+          <div class="artist-photo-overlay" aria-hidden="true"></div>
+        </div>
+        <div class="artist-info">
+          <h3 class="artist-name">Gary Aldrich</h3>
+          <p class="artist-role">Owner · Tattoo Artist</p>
+          <p class="artist-link-label">View gallery &amp; links</p>
+        </div>
+      </a>
+
+      <!-- Gina Carbone -->
+      <a class="artist-card artist-card-link reveal" href="artists/gina.html" aria-label="View Gina Carbone artist page">
+        <div class="artist-photo">
+          <img src="Gina C.jpg" alt="Gina Carbone, Professional Piercer" loading="lazy" decoding="async">
+          <div class="artist-photo-overlay" aria-hidden="true"></div>
+        </div>
+        <div class="artist-info">
+          <h3 class="artist-name">Gina Carbone</h3>
+          <p class="artist-role">Professional Piercer</p>
+          <p class="artist-link-label">View gallery &amp; links</p>
+        </div>
+      </a>
+
+      <!-- Skyler Cook -->
+      <a class="artist-card artist-card-link reveal" href="artists/skyler.html" aria-label="View Skyler Cook artist page">
+        <div class="artist-photo">
+          <img src="Skyler/skyler.JPG" alt="Skyler Cook, Tattoo Artist" loading="lazy" decoding="async">
+          <div class="artist-photo-overlay" aria-hidden="true"></div>
+        </div>
+        <div class="artist-info">
+          <h3 class="artist-name">Skyler Cook</h3>
+          <p class="artist-role">Tattoo Artist</p>
+          <p class="artist-link-label">View gallery &amp; links</p>
+        </div>
+      </a>
+
+      <!-- Kim Cipriani -->
+      <a class="artist-card artist-card-link reveal" href="artists/kim.html" aria-label="View Kim Cipriani artist page">
+        <div class="artist-photo">
+          <img src="Kim/IMG_0898.JPEG" alt="Kim Cipriani, Tattoo Artist" loading="lazy" decoding="async">
+          <div class="artist-photo-overlay" aria-hidden="true"></div>
+        </div>
+        <div class="artist-info">
+          <h3 class="artist-name">Kim Cipriani</h3>
+          <p class="artist-role">Tattoo Artist</p>
+          <p class="artist-link-label">View gallery &amp; links</p>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SERVICES
+     ============================================================ -->
+<section id="services" aria-labelledby="services-heading">
+  <div class="container">
+    <div class="services-header reveal">
+      <span class="section-label">What We Do</span>
+      <div class="gold-rule"></div>
+      <h2 id="services-heading" class="section-title">Services</h2>
+    </div>
+
+    <div class="services-grid">
+
+      <div class="service-card reveal">
+        <div class="service-number">01</div>
+        <h3 class="service-title">Custom Tattoos</h3>
+        <p class="service-desc">
+          No stock flash. Every design starts with your idea. The artists here
+          draw for you — traditional, neo-traditional, realism, horror,
+          blackwork, portraits, color, cover-ups. If it can be tattooed,
+          we've done it.
+        </p>
+        <a href="artists/index.html" class="service-link" aria-label="View our tattoo artists">View Artists</a>
+      </div>
+
+      <div class="service-card reveal">
+        <div class="service-number">02</div>
+        <h3 class="service-title">Body Piercing</h3>
+        <p class="service-desc">
+          Gina Carbone handles all piercing at Dark Tower. Professional,
+          hygienic, and precise. From nostrils to ears to surface work —
+          book your appointment online or walk in and ask for Gina.
+        </p>
+        <a href="https://piercingbyginabooking.as.me/" target="_blank" rel="noopener" class="service-link" aria-label="Book a piercing appointment">Book Piercing</a>
+      </div>
+
+      <div class="service-card reveal">
+        <div class="service-number">03</div>
+        <h3 class="service-title">DTT Merch</h3>
+        <p class="service-desc">
+          Hoodies, hats, jewelry, stickers — the Dark Tower brand in your
+          wardrobe. Stop in the shop to see what's in stock. New designs
+          drop regularly. No online store — in person only.
+        </p>
+        <a href="#contact" class="service-link" aria-label="Find us in Troy">Find the Shop</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     CONTACT / HOURS
+     ============================================================ -->
+<section id="contact" aria-labelledby="contact-heading">
+  <div class="container">
+    <div class="contact-grid">
+
+      <div class="contact-info reveal">
+        <span class="section-label">Find Us</span>
+        <div class="gold-rule gold-rule--left"></div>
+        <h2 id="contact-heading" class="section-title">Hours &amp;<br>Location</h2>
+
+        <p>
+          Walk-in or call ahead. Either way, there's an artist here every day
+          of the week.
+        </p>
+
+        <table class="hours-table" aria-label="Business hours">
+          <tbody>
+            <tr><td>Monday</td><td>11:00 am – 8:00 pm</td></tr>
+            <tr><td>Tuesday</td><td>11:00 am – 8:00 pm</td></tr>
+            <tr><td>Wednesday</td><td>11:00 am – 8:00 pm</td></tr>
+            <tr><td>Thursday</td><td>11:00 am – 8:00 pm</td></tr>
+            <tr><td>Friday</td><td>11:00 am – 8:00 pm</td></tr>
+            <tr><td>Saturday</td><td>11:00 am – 8:00 pm</td></tr>
+            <tr><td>Sunday</td><td>11:00 am – 8:00 pm</td></tr>
+          </tbody>
+        </table>
+        <p class="hours-note">*Shop hours may vary — call ahead to confirm.</p>
+
+        <div class="contact-details">
+          <div class="contact-item">
+            <span class="contact-item-label">Address</span>
+            <a href="https://maps.google.com/?q=564+Hoosick+St,+Troy,+NY+12180" target="_blank" rel="noopener" class="contact-item-value">
+              564 Hoosick St, Troy NY 12180
+            </a>
+          </div>
+          <div class="contact-item">
+            <span class="contact-item-label">Phone</span>
+            <a href="tel:+15182037730" class="contact-item-value">(518) 203-7730</a>
+          </div>
+          <div class="contact-item">
+            <span class="contact-item-label">Piercing Booking</span>
+            <a href="https://piercingbyginabooking.as.me/" target="_blank" rel="noopener" class="contact-item-value">Book with Gina Online</a>
+          </div>
+        </div>
+
+        <div class="contact-social">
+          <a href="https://www.instagram.com/dark_tower_tattoo/" target="_blank" rel="noopener" class="social-pill" aria-label="Dark Tower Tattoo on Instagram">Instagram</a>
+          <a href="https://www.facebook.com/darktowertattoo518" target="_blank" rel="noopener" class="social-pill" aria-label="Dark Tower Tattoo on Facebook">Facebook</a>
+        </div>
+      </div>
+
+      <div class="contact-map reveal">
+        <div class="map-frame">
+          <iframe
+            src="https://maps.google.com/maps?q=564+Hoosick+St,+Troy,+NY+12180&output=embed"
+            title="Dark Tower Tattoo location map"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            allowfullscreen
+          ></iframe>
+          <div class="map-overlay" aria-hidden="true"></div>
+        </div>
+        <div class="map-info">
+          <p class="map-address">564 Hoosick St · Troy, NY 12180</p>
+          <a
+            href="https://maps.google.com/?q=564+Hoosick+St,+Troy,+NY+12180"
+            target="_blank"
+            rel="noopener"
+            class="map-cta"
+            aria-label="Get directions to Dark Tower Tattoo"
+          >Get Directions →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     AFTERCARE BANNER
+     ============================================================ -->
+<div class="aftercare-banner">
+  <div class="container">
+    <div class="aftercare-inner reveal">
+      <p class="aftercare-text">
+        <strong>New tattoo or piercing?</strong> Proper aftercare keeps your work looking sharp for life.
+        Ask your artist before you leave — they'll walk you through everything.
+      </p>
+      <a href="DTT%20logo%20photo/DTT%20Aftercare.png" target="_blank" rel="noopener" class="aftercare-link">
+        Aftercare Info →
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+
+      <div class="footer-brand">
+        <img src="DTT Logo v2.png" alt="Dark Tower Tattoo">
+        <p class="footer-tagline">Custom tattoos and professional piercing in Troy, New York. Walk-ins welcome, 7 days a week.</p>
+        <div class="footer-socials">
+          <a href="https://www.instagram.com/dark_tower_tattoo/" target="_blank" rel="noopener" class="footer-social" aria-label="Instagram">Instagram</a>
+          <a href="https://www.facebook.com/darktowertattoo518" target="_blank" rel="noopener" class="footer-social" aria-label="Facebook">Facebook</a>
+        </div>
+      </div>
+
+      <div>
+        <p class="footer-col-title">Navigate</p>
+        <ul class="footer-links" role="list">
+          <li><a href="#about">About the Shop</a></li>
+          <li><a href="artists/index.html">Artists &amp; Piercers</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#contact">Hours &amp; Location</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="footer-col-title">Contact</p>
+        <ul class="footer-links" role="list">
+          <li><a href="tel:+15182037730">(518) 203-7730</a></li>
+          <li><a href="https://maps.google.com/?q=564+Hoosick+St,+Troy,+NY+12180" target="_blank" rel="noopener">564 Hoosick St, Troy NY</a></li>
+          <li><a href="https://piercingbyginabooking.as.me/" target="_blank" rel="noopener">Book Piercing Online</a></li>
+          <li style="color: var(--text-faint); font-size: 0.9rem; padding-top: 8px;">Open Daily 11am – 8pm</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2026 Dark Tower Tattoo · Troy, NY · All Rights Reserved</p>
+      <p class="footer-legal">564 Hoosick St · Troy, NY 12180 · (518) 203-7730</p>
+    </div>
+  </div>
+</footer>
+
+<div class="mobile-dock" aria-label="Mobile quick actions">
+  <div class="mobile-dock-grid">
+    <a href="tel:+15182037730">Call</a>
+    <a href="https://piercingbyginabooking.as.me/" target="_blank" rel="noopener">Book</a>
+    <a href="https://maps.google.com/?q=564+Hoosick+St,+Troy,+NY+12180" target="_blank" rel="noopener">Directions</a>
+  </div>
+</div>
+
+
+<!-- ============================================================
+     JAVASCRIPT
+     ============================================================ -->
+<script>
+/* ---------- Nav scroll ---------- */
+const nav = document.getElementById('nav');
+const navLinks = document.querySelectorAll('.nav-links a');
+const onScroll = () => {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+};
+window.addEventListener('scroll', onScroll, { passive: true });
+onScroll();
+
+/* ---------- Hamburger / mobile menu ---------- */
+const hamburger   = document.getElementById('hamburger');
+const mobileMenu  = document.getElementById('mobileMenu');
+
+function openMenu() {
+  hamburger.classList.add('open');
+  mobileMenu.classList.add('open');
+  mobileMenu.setAttribute('aria-hidden', 'false');
+  hamburger.setAttribute('aria-expanded', 'true');
+  document.body.style.overflow = 'hidden';
+}
+function closeMenu() {
+  hamburger.classList.remove('open');
+  mobileMenu.classList.remove('open');
+  mobileMenu.setAttribute('aria-hidden', 'true');
+  hamburger.setAttribute('aria-expanded', 'false');
+  document.body.style.overflow = '';
+}
+
+hamburger.addEventListener('click', () => {
+  hamburger.classList.contains('open') ? closeMenu() : openMenu();
+});
+
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape' && hamburger.classList.contains('open')) closeMenu();
+});
+
+/* ---------- Scroll reveal ---------- */
+const revealEls = document.querySelectorAll('.reveal');
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+revealEls.forEach(el => observer.observe(el));
+
+/* ---------- Active nav section ---------- */
+const sectionObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (!entry.isIntersecting) return;
+    navLinks.forEach((link) => {
+      const active = link.getAttribute('href') === `#${entry.target.id}`;
+      link.style.color = active ? 'var(--gold)' : '';
+    });
+  });
+}, { threshold: 0.45 });
+
+document.querySelectorAll('section[id]').forEach((section) => sectionObserver.observe(section));
+
+/* ---------- Stagger reveal within grids ---------- */
+function staggerChildren(parent, selector, delay = 80) {
+  const children = parent.querySelectorAll(selector);
+  children.forEach((child, i) => {
+    child.style.transitionDelay = `${i * delay}ms`;
+  });
+}
+staggerChildren(document.querySelector('.artists-grid'), '.artist-card');
+staggerChildren(document.querySelector('.services-grid'), '.service-card', 100);
+
+/* ---------- Hero parallax ---------- */
+const heroSkull = document.querySelector('.hero-skull');
+const heroLogo = document.querySelector('.hero-logo');
+const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const isMobileViewport = window.matchMedia('(max-width: 768px)');
+
+if (heroSkull && !prefersReduced) {
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    heroSkull.style.transform = `translateY(${y * 0.22}px)`;
+  }, { passive: true });
+}
+
+/* ---------- Hero logo animation ---------- */
+if (heroLogo && !prefersReduced) {
+  let logoTopZoneActive = true;
+
+  const playHeroLogoSpin = () => {
+    heroLogo.classList.remove('is-spinning');
+    void heroLogo.offsetWidth;
+    heroLogo.classList.add('is-spinning');
+  };
+
+  playHeroLogoSpin();
+
+  window.addEventListener('scroll', () => {
+    const nearTop = window.scrollY < 48;
+
+    if (!nearTop) {
+      logoTopZoneActive = false;
+      return;
+    }
+
+    if (!logoTopZoneActive) {
+      logoTopZoneActive = true;
+      playHeroLogoSpin();
+    }
+  }, { passive: true });
+
+  window.addEventListener('pageshow', () => {
+    if (window.scrollY < 48) {
+      logoTopZoneActive = true;
+      playHeroLogoSpin();
+    }
+  });
+} else if (heroLogo) {
+  heroLogo.style.opacity = '1';
+  heroLogo.style.transform = 'none';
+  heroLogo.style.animation = 'heroLogoGlow 4.6s ease-in-out infinite';
+}
+
+if (heroLogo && !prefersReduced && isMobileViewport.matches) {
+  window.addEventListener('load', () => {
+    if (window.scrollY < 48) {
+      heroLogo.classList.remove('is-spinning');
+      void heroLogo.offsetWidth;
+      heroLogo.classList.add('is-spinning');
+    }
+  });
+}
+</script>
+
+</body>
+</html>
