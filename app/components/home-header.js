@@ -15,10 +15,7 @@ export default function HomeHeader({ phoneDisplay, phoneLink }) {
       <div className="home-nav-inner">
         <a href="#hero" className="home-nav-logo" aria-label="Dark Tower Tattoo Home" onClick={closeMenu}>
           <img src="/DTT Logo v2.png" alt="Dark Tower Tattoo logo" />
-          <div className="home-nav-logo-text">
-            Dark Tower
-            <span>Tattoo Studio</span>
-          </div>
+          <div className="home-nav-logo-text">Dark Tower Tattoo</div>
         </a>
 
         <div className="home-nav-links">

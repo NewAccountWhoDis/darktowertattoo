@@ -1143,7 +1143,14 @@ main {
 .home-hero-bg {
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse 80% 70% at 50% 40%, #1a0a0a 0%, #060606 65%);
+  background:
+    linear-gradient(180deg, rgba(6, 6, 6, 0.22), rgba(6, 6, 6, 0.56)),
+    radial-gradient(ellipse 80% 70% at 50% 40%, rgba(26, 10, 10, 0.12) 0%, rgba(6, 6, 6, 0.42) 65%),
+    url("/gary2.heic.png");
+  background-position: center, center, center top;
+  background-size: cover, cover, cover;
+  background-repeat: no-repeat, no-repeat, no-repeat;
+  filter: saturate(1.04) contrast(1.04) brightness(0.92);
   z-index: 0;
 }
 
@@ -1152,8 +1159,8 @@ main {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 100% 50% at 50% 100%, rgba(122, 18, 18, 0.18) 0%, transparent 60%),
-    radial-gradient(ellipse 100% 50% at 50% 0%, rgba(0, 0, 0, 0.7) 0%, transparent 70%);
+    radial-gradient(ellipse 100% 50% at 50% 100%, rgba(122, 18, 18, 0.14) 0%, transparent 60%),
+    radial-gradient(ellipse 100% 50% at 50% 0%, rgba(0, 0, 0, 0.34) 0%, transparent 70%);
   z-index: 2;
   pointer-events: none;
 }
@@ -1987,6 +1994,11 @@ main {
     gap: 16px;
   }
 
+  .home-hero-bg {
+    background-position: center, center, 58% top;
+    background-size: cover, cover, 145%;
+  }
+
   .home-mobile-dock {
     display: block;
   }
@@ -2007,6 +2019,11 @@ main {
   .home-hero-kicker {
     line-height: 1.7;
     padding: 0 10px;
+  }
+
+  .home-hero-bg {
+    background-position: center, center, 62% top;
+    background-size: cover, cover, 170%;
   }
 
   .home-hero-title {
