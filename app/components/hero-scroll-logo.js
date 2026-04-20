@@ -1,11 +1,18 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useReducedMotion } from "framer-motion";
 
 export default function HeroScrollLogo() {
+  const prefersReducedMotion = useReducedMotion();
   const [rotation, setRotation] = useState(0);
 
   useEffect(() => {
+    if (prefersReducedMotion) {
+      setRotation(0);
+      return undefined;
+    }
+
     let frameId = null;
 
     const updateRotation = () => {
@@ -31,7 +38,7 @@ export default function HeroScrollLogo() {
         window.cancelAnimationFrame(frameId);
       }
     };
-  }, []);
+  }, [prefersReducedMotion]);
 
   return (
     <img

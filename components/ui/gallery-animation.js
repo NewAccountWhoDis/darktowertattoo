@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, LayoutGroup, motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 
 export default function ExpandableGallery({
@@ -77,7 +77,8 @@ export default function ExpandableGallery({
   };
 
   return (
-    <div className={className}>
+    <LayoutGroup id={`gallery-${artistName}`}>
+      <div className={className}>
       <div
         className={`expandable-gallery ${mobileColumns ? "expandable-gallery--mobile-columns" : ""}`}
       >
@@ -95,7 +96,8 @@ export default function ExpandableGallery({
             onBlur={() => setHoveredIndex(null)}
             onClick={() => openImage(index)}
           >
-            <img
+            <motion.img
+              layoutId={`gallery-image-${artistName}-${index}`}
               src={image}
               alt={`${artistName} portfolio item ${index + 1}`}
               className="expandable-gallery__image"
@@ -180,6 +182,7 @@ export default function ExpandableGallery({
               >
               <motion.img
                 key={selectedIndex}
+                layoutId={`gallery-image-${artistName}-${selectedIndex}`}
                 src={images[selectedIndex]}
                 alt={`${artistName} portfolio item ${selectedIndex + 1}`}
                 className="expandable-gallery-modal__image"
@@ -223,6 +226,7 @@ export default function ExpandableGallery({
           </motion.div>
         ) : null}
       </AnimatePresence>
-    </div>
+      </div>
+    </LayoutGroup>
   );
 }

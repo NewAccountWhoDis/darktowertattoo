@@ -1,22 +1,29 @@
 import "./globals.css";
 
 export const metadata = {
-  metadataBase: new URL("https://dartktt.netlify.app"),
+  metadataBase: new URL("https://www.darktowertattoo.com"),
   title: "Dark Tower Tattoo",
   description:
     "Dark Tower Tattoo in Troy, NY. Custom tattoos, professional piercing, artist galleries, and booking links.",
+  alternates: {
+    canonical: "/"
+  },
   icons: {
     icon: "/DTT.jpeg",
     shortcut: "/DTT.jpeg",
     apple: "/DTT.jpeg"
   },
   openGraph: {
+    url: "https://www.darktowertattoo.com",
+    siteName: "Dark Tower Tattoo",
     title: "Dark Tower Tattoo",
     description:
       "Dark Tower Tattoo in Troy, NY. Custom tattoos, professional piercing, artist galleries, and booking links.",
     images: [
       {
-        url: "/DTT.jpeg",
+        url: "https://www.darktowertattoo.com/DTT.jpeg",
+        width: 720,
+        height: 720,
         alt: "Dark Tower Tattoo"
       }
     ]
@@ -26,7 +33,7 @@ export const metadata = {
     title: "Dark Tower Tattoo",
     description:
       "Dark Tower Tattoo in Troy, NY. Custom tattoos, professional piercing, artist galleries, and booking links.",
-    images: ["/DTT.jpeg"]
+    images: ["https://www.darktowertattoo.com/DTT.jpeg"]
   }
 };
 

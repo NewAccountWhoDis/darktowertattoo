@@ -1,6 +1,5 @@
-import Link from "next/link";
 import { notFound } from "next/navigation";
-import ExpandableGallery from "@/components/ui/gallery-animation";
+import ArtistDetailContent from "@/app/components/artist-detail-content";
 import { artists, getArtist, shopInfo } from "@/lib/site-data";
 
 export function generateStaticParams() {
@@ -27,100 +26,5 @@ export default function ArtistPage({ params }) {
     notFound();
   }
 
-  return (
-    <main className="page-shell">
-      <section
-        className="artist-hero"
-        style={{
-          backgroundImage: `linear-gradient(rgba(6, 6, 6, 0.2), rgba(6, 6, 6, 0.88)), url('${artist.heroImage}')`
-        }}
-      >
-        <div className="container">
-          <Link href="/artists" className="inline-link">
-            Back to artists
-          </Link>
-          <p className="eyebrow">Dark Tower Tattoo</p>
-          <h1>{artist.name}</h1>
-          <p className="hero-subhead">{artist.role}</p>
-        </div>
-      </section>
-
-      <section className="section">
-        <div className="container profile-grid">
-          <div className="profile-image-card">
-            <img src={artist.portraitImage} alt={artist.name} />
-          </div>
-          <div className="profile-copy">
-            <h2>{artist.title}</h2>
-            {artist.description.map((paragraph) => (
-              <p key={paragraph}>{paragraph}</p>
-            ))}
-
-            <div className="meta-block">
-              <p>
-                <span>Focus</span>
-                {artist.focus}
-              </p>
-              <p>
-                <span>Shop</span>
-                {shopInfo.name} · {shopInfo.address}
-              </p>
-            </div>
-
-            <div className="button-row">
-              <a
-                className="button button-primary"
-                href={artist.primaryLink.href}
-                target="_blank"
-                rel="noreferrer"
-              >
-                {artist.primaryLink.label}
-              </a>
-              {(artist.secondaryLinks || []).map((link) => (
-                <a
-                  key={link.href}
-                  className="button"
-                  href={link.href}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  {link.label}
-                </a>
-              ))}
-              <a className="button" href={`tel:${shopInfo.phoneLink}`}>
-                Call the Shop
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="section section-alt">
-        <div className="container">
-          <p className="eyebrow">Portfolio</p>
-          <h2>Gallery</h2>
-          <p className="section-copy">
-            Hover to expand a piece, then click to open the full-screen gallery.
-          </p>
-          <ExpandableGallery images={artist.gallery} artistName={artist.name} className="artist-gallery-shell" />
-        </div>
-      </section>
-
-      {artist.extraGallery ? (
-        <section className="section">
-          <div className="container">
-            <p className="eyebrow">More Work</p>
-            <h2>{artist.extraGalleryTitle}</h2>
-            <p className="section-copy">{artist.extraGalleryIntro}</p>
-            <ExpandableGallery
-              images={artist.extraGallery}
-              artistName={artist.name}
-              className="artist-gallery-shell artist-gallery-shell--secondary"
-              mobileColumns
-            />
-          </div>
-        </section>
-      ) : null}
-    </main>
-  );
+  return <ArtistDetailContent artist={artist} shopInfo={shopInfo} />;
 }

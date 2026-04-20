@@ -1,6 +1,7 @@
 import Link from "next/link";
 import HomeHeader from "@/app/components/home-header";
-import HeroScrollLogo from "@/app/components/hero-scroll-logo";
+import AnimatedGoldRule from "@/app/components/animated-gold-rule";
+import HomeHeroScene from "@/app/components/home-hero-scene";
 import { artists, shopInfo } from "@/lib/site-data";
 
 export default function HomePage() {
@@ -8,66 +9,13 @@ export default function HomePage() {
     <main className="home-page">
       <HomeHeader phoneDisplay={shopInfo.phoneDisplay} phoneLink={shopInfo.phoneLink} />
 
-      <section id="hero" className="home-hero" aria-label="Welcome to Dark Tower Tattoo">
-        <div className="home-hero-bg" />
-        <img src="/skull.png" alt="" className="home-hero-skull" aria-hidden="true" />
-
-        <div className="home-hero-content">
-          <HeroScrollLogo />
-          <span className="home-hero-eyebrow">Troy, New York · Est. in the 518</span>
-          <p className="home-hero-sub">
-            Walk in for bold flash, book in for fully custom work, and head out with
-            something that feels like it belongs to you.
-          </p>
-          <p className="home-hero-kicker">
-            {shopInfo.address} · Mon - Sat 11a - 8p · Sun by appointment only
-          </p>
-
-          <div className="home-hero-actions">
-            <a href={`tel:${shopInfo.phoneLink}`} className="home-pill home-pill-primary">
-              Call the Shop
-            </a>
-            <Link href="/artists" className="home-pill">
-              Meet the Artists
-            </Link>
-          </div>
-
-          <div className="home-quickbar" aria-label="Quick actions">
-            <a href={`tel:${shopInfo.phoneLink}`} className="home-quickcard">
-              <span className="home-quickcard-label">Call the Shop</span>
-              <div className="home-quickcard-title">{shopInfo.phoneDisplay}</div>
-              <p className="home-quickcard-copy">
-                Talk to the shop directly about walk-ins, consults, and availability.
-              </p>
-            </a>
-            <a
-              href={shopInfo.piercingBooking}
-              target="_blank"
-              rel="noreferrer"
-              className="home-quickcard"
-            >
-              <span className="home-quickcard-label">Book with Gina</span>
-              <div className="home-quickcard-title">Professional piercing appointments</div>
-              <p className="home-quickcard-copy">
-                Direct booking for piercing services with Gina Carbone.
-              </p>
-            </a>
-            <a href={shopInfo.mapsUrl} target="_blank" rel="noreferrer" className="home-quickcard">
-              <span className="home-quickcard-label">Get Directions</span>
-              <div className="home-quickcard-title">564 Hoosick St, Troy NY</div>
-              <p className="home-quickcard-copy">
-                Easy mobile jump-off for directions when someone is ready to head over.
-              </p>
-            </a>
-          </div>
-        </div>
-      </section>
+      <HomeHeroScene shopInfo={shopInfo} />
 
       <section id="about" className="home-section">
         <div className="container home-about-grid">
           <div className="home-about-text">
             <span className="home-section-label">Our Story</span>
-            <div className="home-gold-rule home-gold-rule-left" />
+            <AnimatedGoldRule className="home-gold-rule home-gold-rule-left" />
             <h2 className="home-section-title">
               Built for the Work.
               <br />
@@ -129,7 +77,7 @@ export default function HomePage() {
         <div className="container">
           <div className="home-centered-header">
             <span className="home-section-label">The Crew</span>
-            <div className="home-gold-rule" />
+            <AnimatedGoldRule className="home-gold-rule" />
             <h2 className="home-section-title">Meet the Artists</h2>
             <p className="home-section-intro">
               Four different lanes of work, one shop standard. Start with the artist whose
@@ -165,7 +113,7 @@ export default function HomePage() {
         <div className="container">
           <div className="home-centered-header">
             <span className="home-section-label">What We Do</span>
-            <div className="home-gold-rule" />
+            <AnimatedGoldRule className="home-gold-rule" />
             <h2 className="home-section-title">Services</h2>
           </div>
 
@@ -238,7 +186,7 @@ export default function HomePage() {
         <div className="container home-contact-grid">
           <div className="home-contact-info">
             <span className="home-section-label">Find Us</span>
-            <div className="home-gold-rule home-gold-rule-left" />
+            <AnimatedGoldRule className="home-gold-rule home-gold-rule-left" />
             <h2 className="home-section-title">
               Hours &amp;
               <br />

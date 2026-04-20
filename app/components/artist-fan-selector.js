@@ -3,10 +3,11 @@
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 
 export default function ArtistFanSelector({ artists }) {
   const router = useRouter();
+  const prefersReducedMotion = useReducedMotion();
   const [isReady, setIsReady] = useState(false);
   const [selectedSlug, setSelectedSlug] = useState("");
   const [viewportWidth, setViewportWidth] = useState(1400);
@@ -76,7 +77,28 @@ export default function ArtistFanSelector({ artists }) {
   return (
     <div className="artist-fan-shell">
       <div className="artist-fan-stage">
-        <div className="artist-fan-ring" aria-hidden="true" />
+        <motion.div
+          className="artist-fan-ring"
+          aria-hidden="true"
+          animate={
+            prefersReducedMotion
+              ? undefined
+              : {
+                  scale: [1, 1.018, 1],
+                  opacity: [0.72, 1, 0.72],
+                  rotate: [0, 2, 0]
+                }
+          }
+          transition={
+            prefersReducedMotion
+              ? undefined
+              : {
+                  duration: 10,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }
+          }
+        />
 
         {artists.map((artist, index) => {
           const layout = fanLayout[index] || fanLayout[fanLayout.length - 1];
@@ -99,6 +121,28 @@ export default function ArtistFanSelector({ artists }) {
                       y: 24,
                       rotate: 0,
                       opacity: 0
+                  }
+              }
+              whileHover={
+                prefersReducedMotion
+                  ? undefined
+                  : {
+                      y: layout.y - 22,
+                      rotate: layout.rotate * 0.82,
+                      rotateX: -5,
+                      rotateY: index < 2 ? -7 : 7,
+                      scale: 1.03
+                    }
+              }
+              whileFocus={
+                prefersReducedMotion
+                  ? undefined
+                  : {
+                      y: layout.y - 22,
+                      rotate: layout.rotate * 0.82,
+                      rotateX: -5,
+                      rotateY: index < 2 ? -7 : 7,
+                      scale: 1.03
                     }
               }
               transition={{

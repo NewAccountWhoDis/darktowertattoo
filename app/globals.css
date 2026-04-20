@@ -319,6 +319,8 @@ main {
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  perspective: 1800px;
+  transform-style: preserve-3d;
 }
 
 .artist-fan-ring {
@@ -334,6 +336,8 @@ main {
     0 0 0 36px rgba(196, 148, 58, 0.02),
     0 0 100px rgba(122, 18, 18, 0.08);
   pointer-events: none;
+  opacity: 0.82;
+  will-change: transform;
 }
 
 .artist-fan-card-wrap {
@@ -345,6 +349,8 @@ main {
   margin-left: -125px;
   margin-top: -185px;
   transform-origin: center bottom;
+  transform-style: preserve-3d;
+  will-change: transform;
 }
 
 .artist-fan-card {
@@ -357,6 +363,7 @@ main {
   background: linear-gradient(180deg, rgba(23, 23, 23, 0.98), rgba(8, 8, 8, 0.98));
   box-shadow: 0 24px 70px rgba(0, 0, 0, 0.42);
   transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+  transform-style: preserve-3d;
 }
 
 .artist-fan-card:hover,
@@ -371,6 +378,13 @@ main {
   height: 100%;
   object-fit: cover;
   filter: grayscale(0.16) contrast(1.05);
+  transition: transform 0.45s ease, filter 0.45s ease;
+}
+
+.artist-fan-card:hover img,
+.artist-fan-card:focus-visible img {
+  transform: scale(1.04);
+  filter: grayscale(0.04) contrast(1.08);
 }
 
 .artist-fan-overlay {
@@ -481,10 +495,31 @@ main {
 }
 
 .artist-hero {
+  position: relative;
   padding: 96px 0 72px;
-  background-size: cover;
-  background-position: center;
   border-bottom: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.artist-hero-media {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center top;
+  will-change: transform;
+}
+
+.artist-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(6, 6, 6, 0.2), rgba(6, 6, 6, 0.72)),
+    radial-gradient(circle at 50% 20%, rgba(196, 148, 58, 0.08), transparent 36%);
+}
+
+.artist-hero-content {
+  position: relative;
+  z-index: 1;
 }
 
 .artist-hero h1 {
@@ -1152,6 +1187,7 @@ main {
   background-repeat: no-repeat, no-repeat, no-repeat;
   filter: saturate(1.04) contrast(1.04) brightness(0.92);
   z-index: 0;
+  will-change: transform;
 }
 
 .home-hero::after {
@@ -1175,6 +1211,7 @@ main {
   pointer-events: none;
   mix-blend-mode: screen;
   filter: grayscale(1) brightness(1.15) contrast(1.05);
+  will-change: transform;
 }
 
 .home-hero-content {
@@ -1896,6 +1933,41 @@ main {
   align-items: start;
 }
 
+.aftercare-steps-wrap {
+  position: relative;
+  padding-left: 30px;
+}
+
+.aftercare-progress-rail {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 10px;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.aftercare-progress-track,
+.aftercare-progress-fill {
+  width: 2px;
+  border-radius: 999px;
+}
+
+.aftercare-progress-track {
+  height: 100%;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.aftercare-progress-fill {
+  position: absolute;
+  top: 0;
+  background: linear-gradient(180deg, rgba(196, 148, 58, 0.95), rgba(122, 18, 18, 0.75));
+  transform-origin: top center;
+  will-change: transform;
+}
+
 .aftercare-steps {
   display: flex;
   flex-direction: column;
@@ -1908,6 +1980,7 @@ main {
   gap: 24px;
   padding: 32px 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  transition: transform 0.28s ease, border-color 0.28s ease, background 0.28s ease;
 }
 
 .aftercare-step:first-child {
@@ -1920,6 +1993,7 @@ main {
   letter-spacing: 0.2em;
   color: var(--gold);
   padding-top: 4px;
+  transition: color 0.28s ease, text-shadow 0.28s ease;
 }
 
 .aftercare-step-content h2 {
@@ -1937,6 +2011,20 @@ main {
   font-size: 1rem;
   line-height: 1.7;
   color: var(--text-muted);
+}
+
+.aftercare-step.is-active {
+  transform: translateX(6px);
+  border-bottom-color: rgba(196, 148, 58, 0.18);
+}
+
+.aftercare-step.is-active .aftercare-step-num {
+  color: #f1cf8a;
+  text-shadow: 0 0 18px rgba(196, 148, 58, 0.22);
+}
+
+.aftercare-step.is-active .aftercare-step-content h2 {
+  color: #f6efe6;
 }
 
 .aftercare-step-content strong {
@@ -2075,6 +2163,14 @@ main {
     gap: 48px;
   }
 
+  .aftercare-steps-wrap {
+    padding-left: 0;
+  }
+
+  .aftercare-progress-rail {
+    display: none;
+  }
+
   .aftercare-sidebar {
     position: static;
     display: grid;
@@ -2097,6 +2193,21 @@ main {
     flex-direction: column;
     align-items: flex-start;
     gap: 20px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .artist-fan-ring,
+  .artist-hero-media,
+  .home-hero-bg,
+  .home-hero-skull {
+    animation: none !important;
+    transform: none !important;
+  }
+
+  .aftercare-step,
+  .artist-fan-card img {
+    transition: none;
   }
 }
 
