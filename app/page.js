@@ -58,10 +58,6 @@ export default function HomePage() {
                 <div className="home-stat-num">Walk-In</div>
                 <div className="home-stat-label">Always Welcome</div>
               </div>
-              <div>
-                <div className="home-stat-num">518</div>
-                <div className="home-stat-label">Area Code Proud</div>
-              </div>
             </div>
           </div>
 
