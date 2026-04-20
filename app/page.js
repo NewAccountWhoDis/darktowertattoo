@@ -20,7 +20,7 @@ export default function HomePage() {
             something that feels like it belongs to you.
           </p>
           <p className="home-hero-kicker">
-            {shopInfo.address} · Open daily 11am to 8pm · Walk-ins welcome
+            {shopInfo.address} · Mon - Sat 11a - 8p · Sun by appointment only
           </p>
 
           <div className="home-hero-actions">
@@ -104,7 +104,7 @@ export default function HomePage() {
             <div className="home-stat-bar">
               <div>
                 <div className="home-stat-num">11-8</div>
-                <div className="home-stat-label">Every Day</div>
+                <div className="home-stat-label">Mon - Sat</div>
               </div>
               <div>
                 <div className="home-stat-num">Walk-In</div>
@@ -246,15 +246,19 @@ export default function HomePage() {
             </h2>
 
             <p>
-              Walk-in or call ahead. Either way, there&apos;s an artist here every day
-              of the week.
+              Walk in Monday through Saturday, or call ahead to book a Sunday
+              appointment.
             </p>
 
             <table className="home-hours-table" aria-label="Business hours">
               <tbody>
                 <tr>
-                  <td>Open Daily</td>
-                  <td>11am – 8pm</td>
+                  <td>Mon - Sat</td>
+                  <td>11a - 8p</td>
+                </tr>
+                <tr>
+                  <td>Sun</td>
+                  <td>By appointment only</td>
                 </tr>
               </tbody>
             </table>
@@ -343,7 +347,7 @@ export default function HomePage() {
               <img src="/DTT Logo v2.png" alt="Dark Tower Tattoo" />
               <p className="home-footer-tagline">
                 Custom tattoos and professional piercing in Troy, New York.
-                Walk-ins welcome, 7 days a week.
+                Walk-ins welcome Monday through Saturday.
               </p>
             </div>
 
@@ -368,7 +372,7 @@ export default function HomePage() {
                 <a href={shopInfo.piercingBooking} target="_blank" rel="noreferrer">
                   Book Piercing Online
                 </a>
-                <span>Open Daily 11am - 8pm</span>
+                <span>Mon - Sat 11a - 8p · Sun by appointment only</span>
               </div>
             </div>
           </div>

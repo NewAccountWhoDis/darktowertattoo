@@ -127,7 +127,7 @@ export default function AftercarePage() {
 
             <div className="aftercare-sidebar-card aftercare-sidebar-card--hours">
               <p className="aftercare-sidebar-label">Shop Hours</p>
-              <p className="aftercare-sidebar-hours">Open Daily<br />11am – 8pm</p>
+              <p className="aftercare-sidebar-hours">Mon - Sat 11a - 8p<br />Sun by appointment only</p>
               <p className="aftercare-sidebar-note">Walk-ins welcome · {shopInfo.address}</p>
             </div>
           </aside>
